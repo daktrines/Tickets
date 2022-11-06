@@ -23,7 +23,7 @@ namespace Tickets
         public AddForm4()
         {
             InitializeComponent();
-            КодСамолета.Focus();
+            КодБилета.Focus();
         }
 
         Продажа_билетов_на_самолетEntities db = ContextDB.GetContext();
@@ -32,10 +32,12 @@ namespace Tickets
         {
             //Проверка каждого обязательного для заполнения поля
             StringBuilder errors = new StringBuilder();
-            if (КодСамолета.Text.Length == 0 || double.TryParse(КодСамолета.Text, out double x1) == false || x1 < 1) errors.AppendLine("Введите код самолета");
+            if (КодБилета.Text.Length == 0 || double.TryParse(КодБилета.Text, out double x1) == false || x1 < 1) errors.AppendLine("Введите код билета");
             if (Наименование.Text.Length == 0) errors.AppendLine("Введите наименование авиакомпании ");
-            if (МодельСамолета.Text.Length == 0) errors.AppendLine("Введите модель самолета");
-            if (КоличествоМест.Text.Length == 0 || double.TryParse(КоличествоМест.Text, out double x2) == false || x2 < 1) errors.AppendLine("Введите количество мест");
+            if (Фамилия.Text.Length == 0) errors.AppendLine("Введите наименование авиакомпании ");
+            if (Имя.Text.Length == 0) errors.AppendLine("Введите имя");
+            if (Отчество.Text.Length == 0) errors.AppendLine("Введите отчество");
+            if (КодРейса.Text.Length == 0 || double.TryParse(КодРейса.Text, out double x2) == false || x2 < 1) errors.AppendLine("Введите количество мест");
 
 
             if (errors.Length > 0)
@@ -83,6 +85,11 @@ namespace Tickets
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+        }
+
+        private void Город_назначение_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

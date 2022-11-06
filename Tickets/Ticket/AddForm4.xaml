@@ -15,12 +15,30 @@
                 <TextBox x:Name="КодРейса" Margin="3" />
                 <Label >Наименование Авиакомпании</Label>
                 <ComboBox x:Name="Наименование" Margin="3" DisplayMemberPath="Наименование" SelectionChanged="Наименование_SelectionChanged"/>
+                <Label >Фамилия</Label>
+                <TextBox x:Name="Фамилия" Margin="3" />
+                <Label >Имя</Label>
+                <TextBox x:Name="Имя" Margin="3" />
+                <Label >Отчество</Label>
+                <TextBox x:Name="Отчество" Margin="3" />
                 <Label >Название Класса</Label>
-                <ComboBox x:Name="НазваниеКласса" Margin="3"/>
+                <ComboBox x:Name="НазваниеКласса" Margin="3">
+                    <ComboBoxItem>Эконом-класс</ComboBoxItem>
+                    <ComboBoxItem>Бизнес-класс</ComboBoxItem>
+                    </ComboBox>
                 <Label >Багаж</Label>
-                <ComboBox x:Name="Багаж" Margin="3"/>
-               
-                <Label >Город Назначение</Label>
+                <ComboBox x:Name="Багаж" Margin="3">
+                    <ComboBoxItem>True</ComboBoxItem>
+                    <ComboBoxItem>False</ComboBoxItem>
+                </ComboBox>
+                <Label >Дата Отправления</Label>
+                <DatePicker x:Name="ДатаОтправления" Margin="3" />
+                <Label >Время Отправления</Label>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="Часы" Width="89"   />
+                    <TextBox x:Name="Минуты" Width="89" />
+                </StackPanel>
+                <Label >Город Назначения</Label>
                 <ComboBox x:Name="Город_назначение" Margin="3" DisplayMemberPath="Город_назначение" SelectionChanged="Город_назначение_SelectionChanged"/>
                 <Button Content="Добавить" IsDefault="True" Margin="3" Click="AddMain_Click"/>
                 <Button Content="Отмена" Margin="3" Click="CloseMain_Click" />
@@ -29,10 +47,17 @@
         <GroupBox >
             <DataGrid x:Name="AddTable" IsReadOnly="True" AutoGenerateColumns="False" MinWidth=" 150">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Код Авиакомпании" Binding="{Binding КодАвиакомпании}"/>
-                    <DataGridTextColumn Header="Наименование" Binding="{Binding Наименование}"/>
-                    <DataGridTextColumn Header="Телефон" Binding="{Binding Телефон}"/>
-                    <DataGridTextColumn Header="Электронный Адрес" Binding="{Binding ЭлектронныйАдрес}"/>
+                    <DataGridTextColumn Header="Код Рейса" Binding="{Binding КодРейса}"/>
+                    <DataGridTextColumn Header="КодАвиакомпании" Binding="{Binding КодАвиакомпании}"/>
+                    <DataGridTextColumn Header="КодСамолёта" Binding="{Binding КодСамолёта}"/>
+                    <DataGridTextColumn Header="Отправление" Binding="{Binding Отправление}"/>
+                    <DataGridTextColumn Header="Прибытие" Binding="{Binding Прибытие}"/>
+                    <DataGridTextColumn Header="Дата Отправления" Binding="{Binding ДатаОтправления}"/>
+                    <DataGridTextColumn Header="Дата Прибытия" Binding="{Binding ДатаПрибытия}"/>
+                    <DataGridTextColumn Header="Время Отправления" Binding="{Binding ВремяОтправления}"/>
+                    <DataGridTextColumn Header="Время Прибытия" Binding="{Binding ВремяПрибытия}"/>
+                    <DataGridTextColumn Header="Длительность Перелета" Binding="{Binding ДлительностьПерелета}"/>
+                    <DataGridTextColumn Header="Стоимость Билета" Binding="{Binding СтоимостьБилета}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
