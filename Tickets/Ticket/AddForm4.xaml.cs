@@ -27,18 +27,19 @@ namespace Tickets
         }
 
         Продажа_билетов_на_самолетEntities db = ContextDB.GetContext();
-
+        Билеты p1;
         private void AddMain_Click(object sender, RoutedEventArgs e)
         {
             //Проверка каждого обязательного для заполнения поля
             StringBuilder errors = new StringBuilder();
             if (КодБилета.Text.Length == 0 || double.TryParse(КодБилета.Text, out double x1) == false || x1 < 1) errors.AppendLine("Введите код билета");
-            if (Наименование.Text.Length == 0) errors.AppendLine("Введите наименование авиакомпании ");
-            if (Фамилия.Text.Length == 0) errors.AppendLine("Введите наименование авиакомпании ");
+            if (КодРейса.Text.Length == 0 || double.TryParse(КодРейса.Text, out double x2) == false || x2 < 1) errors.AppendLine("Введите код рейса");
+            if (Наименование.Text.Length == 0) errors.AppendLine("Введите наименование авиакомпании");
+            if (Фамилия.Text.Length == 0) errors.AppendLine("Введите фамилию");
             if (Имя.Text.Length == 0) errors.AppendLine("Введите имя");
             if (Отчество.Text.Length == 0) errors.AppendLine("Введите отчество");
-            if (КодРейса.Text.Length == 0 || double.TryParse(КодРейса.Text, out double x2) == false || x2 < 1) errors.AppendLine("Введите количество мест");
-
+            if (НазваниеКласса.Text.Length == 0) errors.AppendLine("Введите название класса");
+            if (Багаж.Text.Length == 0) errors.AppendLine("Введите багаж");
 
             if (errors.Length > 0)
             {
@@ -47,8 +48,45 @@ namespace Tickets
             }
 
             try
-            {
-                db.НовыйСамолет(Convert.ToInt32(КодСамолета.Text), ((Авиакомпании)Наименование.SelectedValue).КодАвиакомпании, МодельСамолета.Text, Convert.ToInt32(КоличествоМест.Text));
+            {//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Изменение
+             //db.НовыйСамолет(Convert.ToInt32(КодСамолета.Text), ((Авиакомпании)Наименование.SelectedValue).КодАвиакомпании, МодельСамолета.Text, Convert.ToInt32(КоличествоМест.Text));
+                #region СозданиеНовогоБилета
+                p1 = new Билеты();
+                p1.КодБилета = Convert.ToInt32(КодБилета.Text);
+                #region Проверка наличия такого рейса и его присваивание
+                int RaceId = Convert.ToInt32(КодРейса.Text);
+                var codes = from table in db.Рейсы
+                            where table.КодРейса == RaceId
+                            select table;
+                if (codes.Count() == 0) throw new Exception("Не существует указанного рейса");
+                else p1.КодРейса = RaceId;
+                #endregion
+                p1.КодАвиакомпании = db.Авиакомпании.Local.ToBindingList().Where(p => p.Наименование == ((Авиакомпании)Наименование.SelectedValue).Наименование).First().КодАвиакомпании;
+                p1.НазваниеКласса = НазваниеКласса.Text;
+                #region Багаж
+                if (Багаж.Text == "Есть") p1.Багаж = true;
+                else p1.Багаж = false;
+                #endregion
+                #region Получение кода пассажира
+                var passengers = db.Пассажиры.Local.ToBindingList().
+                    Where(p => p.Фамилия == Фамилия.Text).
+                    Where(p => p.Имя == Имя.Text).
+                    Where(p => p.Отчество == Отчество.Text);
+                if (passengers.Count() == 0) throw new Exception("Не существует человека с таким ФИО!");
+                else
+                {
+                    int passengerId = passengers.First().КодПассажира;
+                    var tickets = from table in db.Билеты
+                                where table.КодПассажира == passengerId
+                                select table;
+                    if (tickets.Count() != 0) throw new Exception("Данный пассажир уже имеет билет!");
+                    else p1.КодПассажира = passengerId;
+                }
+                #endregion
+                p1.ДатаПокупкиБилета = DateTime.Now.Date;
+                p1.ВремяПокупкиБилета = DateTime.Now.TimeOfDay;
+                #endregion
+                db.Билеты.Add(p1);
                 //Сохраняем изменения
                 db.SaveChanges();
                 Close();
@@ -68,28 +106,18 @@ namespace Tickets
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             db.Авиакомпании.Load();
-            db.Самолеты.Load();
+            db.Рейсы.Load();
+            db.Билеты.Load();
             //Поличаем список из другой таблицы
             Наименование.ItemsSource = db.Авиакомпании.Local.ToBindingList();
-
         }
-
-        private void Наименование_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void КодРейса_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
-            {
-                //получаем список авиакомпаний из таблицы авиакомпаниии, и потом используем выборку по наименованию
-                AddTable.ItemsSource = db.Авиакомпании.Local.ToBindingList().Where(p => p.Наименование == ((Авиакомпании)Наименование.SelectedValue).Наименование);
+            {                
+                AddTable.ItemsSource = db.Рейсы.Local.ToBindingList().Where(p => p.КодРейса == Convert.ToInt32(КодРейса.Text));
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-        }
-
-        private void Город_назначение_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            catch { }
         }
     }
 }

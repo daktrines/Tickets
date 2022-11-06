@@ -239,12 +239,6 @@
           <Parameter Name="МобильныйТелефон" Type="nvarchar" Mode="In" />
           <Parameter Name="ДатаРождения" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="НовыйСамолет" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="КодСамолета" Type="int" Mode="In" />
-          <Parameter Name="КодАвиакомпании" Type="int" Mode="In" />
-          <Parameter Name="МодельСамолета" Type="nvarchar" Mode="In" />
-          <Parameter Name="КоличествоМест" Type="int" Mode="In" />
-        </Function>
         <Function Name="ОпределеннаяДатаРейса" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ОпределеннаяПочтаИНомерАвиакомпании" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="КодАвиакомпании" Type="int" Mode="In" />
@@ -255,7 +249,6 @@
         <Function Name="ПассажирыСБагажом" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
           <Parameter Name="Багаж" Type="bit" Mode="In" />
         </Function>
-        <Function Name="СамолетыПроцедура" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="СовершеннолетниеПассажиры" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="СтоимостьОпределенногоРейса" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="КодРейса" Type="int" Mode="In" />
@@ -914,17 +907,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="УдалениеАэропорта" FunctionName="Хранилище Model.УдалениеАэропорта" />
           <FunctionImportMapping FunctionImportName="УдалениеБилета" FunctionName="Хранилище Model.УдалениеБилета" />
-          <FunctionImportMapping FunctionImportName="СамолетыПроцедура" FunctionName="Хранилище Model.СамолетыПроцедура">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.СамолетыПроцедура_Result">
-                <ScalarProperty Name="КодСамолета" ColumnName="КодСамолета" />
-                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
-                <ScalarProperty Name="МодельСамолета" ColumnName="МодельСамолета" />
-                <ScalarProperty Name="КоличествоМест" ColumnName="КоличествоМест" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="НовыйСамолет" FunctionName="Хранилище Model.НовыйСамолет" />
           <FunctionImportMapping FunctionImportName="БилетыПроцедура" FunctionName="Хранилище Model.БилетыПроцедура">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Model.БилетыПроцедура_Result">
