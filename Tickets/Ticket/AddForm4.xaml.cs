@@ -36,8 +36,6 @@ namespace Tickets
             if (КодРейса.Text.Length == 0 || double.TryParse(КодРейса.Text, out double x2) == false || x2 < 1) errors.AppendLine("Введите код рейса");
             if (Наименование.Text.Length == 0) errors.AppendLine("Введите наименование авиакомпании");
             if (Фамилия.Text.Length == 0) errors.AppendLine("Введите фамилию");
-            if (Имя.Text.Length == 0) errors.AppendLine("Введите имя");
-            if (Отчество.Text.Length == 0) errors.AppendLine("Введите отчество");
             if (НазваниеКласса.Text.Length == 0) errors.AppendLine("Введите название класса");
             if (Багаж.Text.Length == 0) errors.AppendLine("Введите багаж");
 
@@ -111,13 +109,30 @@ namespace Tickets
             //Поличаем список из другой таблицы
             Наименование.ItemsSource = db.Авиакомпании.Local.ToBindingList();
             КодРейса.ItemsSource = db.Рейсы.Local.ToBindingList();
+            Фамилия.ItemsSource = db.Пассажиры.Local.ToBindingList();
         }
 
         private void КодРейса_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                AddTable.ItemsSource = db.Рейсы.Local.ToBindingList().Where(p => p.КодРейса == Convert.ToInt32(((Рейсы)((ComboBox)sender).SelectedItem).КодРейса));
+                AddTable.ItemsSource = db.Рейсы.Local.ToBindingList().Where(p => p.КодРейса == ((Рейсы)КодРейса.SelectedValue).КодРейса);
+            }
+            catch (Exception ex)//Если что пойдет не так - при точке останова глянуть значение ex
+            {
+
+            }
+        }
+        private void Фамилия_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var query = from table in db.Пассажиры
+                            where ((Пассажиры)Фамилия.SelectedValue).Фамилия == table.Фамилия
+                            select table;
+                var passenger = query.First();
+                Имя.Text = passenger.Имя;
+                Отчество.Text = passenger.Отчество;
             }
             catch (Exception ex)
             {

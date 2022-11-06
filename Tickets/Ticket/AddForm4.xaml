@@ -16,11 +16,11 @@
                 <Label >Наименование Авиакомпании</Label>
                 <ComboBox x:Name="Наименование" Margin="3" DisplayMemberPath="Наименование"/>
                 <Label >Фамилия</Label>
-                <TextBox x:Name="Фамилия" Margin="3" />
+                <ComboBox x:Name="Фамилия" Margin="3" DisplayMemberPath="Фамилия" SelectionChanged="Фамилия_SelectionChanged"/>
                 <Label >Имя</Label>
-                <TextBox x:Name="Имя" Margin="3" />
+                <TextBox x:Name="Имя" Margin="3" IsReadOnly="True"/>
                 <Label >Отчество</Label>
-                <TextBox x:Name="Отчество" Margin="3" />
+                <TextBox x:Name="Отчество" Margin="3" IsReadOnly="True"/>
                 <Label >Название Класса</Label>
                 <ComboBox x:Name="НазваниеКласса" Margin="3">
                     <ComboBoxItem>Эконом-класс</ComboBoxItem>
