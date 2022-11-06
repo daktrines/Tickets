@@ -1,0 +1,968 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Авиакомпании">
+          <Key>
+            <PropertyRef Name="КодАвиакомпании" />
+          </Key>
+          <Property Name="КодАвиакомпании" Type="int" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Телефон" Type="nvarchar" MaxLength="50" />
+          <Property Name="ЭлектронныйАдрес" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Аэропорты">
+          <Key>
+            <PropertyRef Name="КодАэропорта" />
+          </Key>
+          <Property Name="КодАэропорта" Type="int" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Город" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Телефон" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Билеты">
+          <Key>
+            <PropertyRef Name="КодБилета" />
+          </Key>
+          <Property Name="КодБилета" Type="bigint" Nullable="false" />
+          <Property Name="КодРейса" Type="int" Nullable="false" />
+          <Property Name="КодАвиакомпании" Type="int" Nullable="false" />
+          <Property Name="КодПассажира" Type="int" Nullable="false" />
+          <Property Name="НазваниеКласса" Type="nvarchar" MaxLength="50" />
+          <Property Name="ДатаПокупкиБилета" Type="date" Nullable="false" />
+          <Property Name="ВремяПокупкиБилета" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Багаж" Type="bit" />
+        </EntityType>
+        <EntityType Name="Пассажиры">
+          <Key>
+            <PropertyRef Name="КодПассажира" />
+          </Key>
+          <Property Name="КодПассажира" Type="int" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="СерияПаспорта" Type="int" Nullable="false" />
+          <Property Name="НомерПаспорта" Type="int" Nullable="false" />
+          <Property Name="МобильныйТелефон" Type="nvarchar" MaxLength="50" />
+          <Property Name="ДатаРождения" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Рейсы">
+          <Key>
+            <PropertyRef Name="КодРейса" />
+          </Key>
+          <Property Name="КодРейса" Type="int" Nullable="false" />
+          <Property Name="КодАвиакомпании" Type="int" Nullable="false" />
+          <Property Name="КодСамолёта" Type="int" Nullable="false" />
+          <Property Name="Отправление" Type="int" Nullable="false" />
+          <Property Name="Прибытие" Type="int" Nullable="false" />
+          <Property Name="ДатаОтправления" Type="date" Nullable="false" />
+          <Property Name="ДатаПрибытия" Type="date" Nullable="false" />
+          <Property Name="ВремяОтправления" Type="time" Precision="7" Nullable="false" />
+          <Property Name="ВремяПрибытия" Type="time" Precision="7" Nullable="false" />
+          <Property Name="ДлительностьПерелета" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="СтоимостьБилета" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Самолеты">
+          <Key>
+            <PropertyRef Name="КодСамолета" />
+          </Key>
+          <Property Name="КодСамолета" Type="int" Nullable="false" />
+          <Property Name="КодАвиакомпании" Type="int" Nullable="false" />
+          <Property Name="МодельСамолета" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="КоличествоМест" Type="int" />
+        </EntityType>
+        <Association Name="FK_Билеты_Авиакомпании">
+          <End Role="Авиакомпании" Type="Self.Авиакомпании" Multiplicity="1" />
+          <End Role="Билеты" Type="Self.Билеты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Авиакомпании">
+              <PropertyRef Name="КодАвиакомпании" />
+            </Principal>
+            <Dependent Role="Билеты">
+              <PropertyRef Name="КодАвиакомпании" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Билеты_Пассажиры">
+          <End Role="Пассажиры" Type="Self.Пассажиры" Multiplicity="1" />
+          <End Role="Билеты" Type="Self.Билеты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пассажиры">
+              <PropertyRef Name="КодПассажира" />
+            </Principal>
+            <Dependent Role="Билеты">
+              <PropertyRef Name="КодПассажира" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Билеты_Рейсы">
+          <End Role="Рейсы" Type="Self.Рейсы" Multiplicity="1" />
+          <End Role="Билеты" Type="Self.Билеты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Рейсы">
+              <PropertyRef Name="КодРейса" />
+            </Principal>
+            <Dependent Role="Билеты">
+              <PropertyRef Name="КодРейса" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Рейсы_Авиакомпании">
+          <End Role="Авиакомпании" Type="Self.Авиакомпании" Multiplicity="1" />
+          <End Role="Рейсы" Type="Self.Рейсы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Авиакомпании">
+              <PropertyRef Name="КодАвиакомпании" />
+            </Principal>
+            <Dependent Role="Рейсы">
+              <PropertyRef Name="КодАвиакомпании" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Рейсы_Аэропорты">
+          <End Role="Аэропорты" Type="Self.Аэропорты" Multiplicity="1" />
+          <End Role="Рейсы" Type="Self.Рейсы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Аэропорты">
+              <PropertyRef Name="КодАэропорта" />
+            </Principal>
+            <Dependent Role="Рейсы">
+              <PropertyRef Name="Отправление" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Рейсы_Аэропорты1">
+          <End Role="Аэропорты" Type="Self.Аэропорты" Multiplicity="1" />
+          <End Role="Рейсы" Type="Self.Рейсы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Аэропорты">
+              <PropertyRef Name="КодАэропорта" />
+            </Principal>
+            <Dependent Role="Рейсы">
+              <PropertyRef Name="Прибытие" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Рейсы_Самолеты">
+          <End Role="Самолеты" Type="Self.Самолеты" Multiplicity="1" />
+          <End Role="Рейсы" Type="Self.Рейсы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Самолеты">
+              <PropertyRef Name="КодСамолета" />
+            </Principal>
+            <Dependent Role="Рейсы">
+              <PropertyRef Name="КодСамолёта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Самолеты_Авиакомпании">
+          <End Role="Авиакомпании" Type="Self.Авиакомпании" Multiplicity="1" />
+          <End Role="Самолеты" Type="Self.Самолеты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Авиакомпании">
+              <PropertyRef Name="КодАвиакомпании" />
+            </Principal>
+            <Dependent Role="Самолеты">
+              <PropertyRef Name="КодАвиакомпании" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="БилетыПроцедура" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ВозрастПассажиров" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ГлавноеОкно" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ГородОтправления" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ГородОтправления" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ИзменениеТелефонаАвиакомпании" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="КодАвиакомпании" Type="int" Mode="In" />
+          <Parameter Name="Телефон" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="МинимальноеКоличествоМестВСамолете" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="МодельСамолета" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="НоваяАвиакомпания" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="КодАвиакомпании" Type="int" Mode="In" />
+          <Parameter Name="Наименование" Type="nvarchar" Mode="In" />
+          <Parameter Name="Телефон" Type="nvarchar" Mode="In" />
+          <Parameter Name="ЭлектронныйАдрес" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="НовыйПассажир" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="КодПассажира" Type="int" Mode="In" />
+          <Parameter Name="Фамилия" Type="nvarchar" Mode="In" />
+          <Parameter Name="Имя" Type="nvarchar" Mode="In" />
+          <Parameter Name="Отчество" Type="nvarchar" Mode="In" />
+          <Parameter Name="СерияПаспорта" Type="int" Mode="In" />
+          <Parameter Name="НомерПаспорта" Type="int" Mode="In" />
+          <Parameter Name="МобильныйТелефон" Type="nvarchar" Mode="In" />
+          <Parameter Name="ДатаРождения" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="НовыйСамолет" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="КодСамолета" Type="int" Mode="In" />
+          <Parameter Name="КодАвиакомпании" Type="int" Mode="In" />
+          <Parameter Name="МодельСамолета" Type="nvarchar" Mode="In" />
+          <Parameter Name="КоличествоМест" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ОпределеннаяДатаРейса" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ОпределеннаяПочтаИНомерАвиакомпании" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="КодАвиакомпании" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ОпределенныйКласс" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="КлассСамолета" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ПассажирыСБагажом" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="Багаж" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="СамолетыПроцедура" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="СовершеннолетниеПассажиры" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="СтоимостьОпределенногоРейса" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="КодРейса" Type="int" Mode="In" />
+        </Function>
+        <Function Name="УдалениеАэропорта" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="КодАэропорта" Type="int" Mode="In" />
+        </Function>
+        <Function Name="УдалениеБилета" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="КодБилета" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Авиакомпании" EntityType="Self.Авиакомпании" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Аэропорты" EntityType="Self.Аэропорты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Билеты" EntityType="Self.Билеты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Пассажиры" EntityType="Self.Пассажиры" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Рейсы" EntityType="Self.Рейсы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Самолеты" EntityType="Self.Самолеты" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Билеты_Авиакомпании" Association="Self.FK_Билеты_Авиакомпании">
+            <End Role="Авиакомпании" EntitySet="Авиакомпании" />
+            <End Role="Билеты" EntitySet="Билеты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Билеты_Пассажиры" Association="Self.FK_Билеты_Пассажиры">
+            <End Role="Пассажиры" EntitySet="Пассажиры" />
+            <End Role="Билеты" EntitySet="Билеты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Билеты_Рейсы" Association="Self.FK_Билеты_Рейсы">
+            <End Role="Рейсы" EntitySet="Рейсы" />
+            <End Role="Билеты" EntitySet="Билеты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Рейсы_Авиакомпании" Association="Self.FK_Рейсы_Авиакомпании">
+            <End Role="Авиакомпании" EntitySet="Авиакомпании" />
+            <End Role="Рейсы" EntitySet="Рейсы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Рейсы_Аэропорты" Association="Self.FK_Рейсы_Аэропорты">
+            <End Role="Аэропорты" EntitySet="Аэропорты" />
+            <End Role="Рейсы" EntitySet="Рейсы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Рейсы_Аэропорты1" Association="Self.FK_Рейсы_Аэропорты1">
+            <End Role="Аэропорты" EntitySet="Аэропорты" />
+            <End Role="Рейсы" EntitySet="Рейсы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Рейсы_Самолеты" Association="Self.FK_Рейсы_Самолеты">
+            <End Role="Самолеты" EntitySet="Самолеты" />
+            <End Role="Рейсы" EntitySet="Рейсы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Самолеты_Авиакомпании" Association="Self.FK_Самолеты_Авиакомпании">
+            <End Role="Авиакомпании" EntitySet="Авиакомпании" />
+            <End Role="Самолеты" EntitySet="Самолеты" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Авиакомпании">
+          <Key>
+            <PropertyRef Name="КодАвиакомпании" />
+          </Key>
+          <Property Name="КодАвиакомпании" Type="Int32" Nullable="false" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ЭлектронныйАдрес" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Билеты" Relationship="Self.FK_Билеты_Авиакомпании" FromRole="Авиакомпании" ToRole="Билеты" />
+          <NavigationProperty Name="Рейсы" Relationship="Self.FK_Рейсы_Авиакомпании" FromRole="Авиакомпании" ToRole="Рейсы" />
+          <NavigationProperty Name="Самолеты" Relationship="Self.FK_Самолеты_Авиакомпании" FromRole="Авиакомпании" ToRole="Самолеты" />
+        </EntityType>
+        <EntityType Name="Аэропорты">
+          <Key>
+            <PropertyRef Name="КодАэропорта" />
+          </Key>
+          <Property Name="КодАэропорта" Type="Int32" Nullable="false" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Город" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Рейсы" Relationship="Self.FK_Рейсы_Аэропорты" FromRole="Аэропорты" ToRole="Рейсы" />
+          <NavigationProperty Name="Рейсы1" Relationship="Self.FK_Рейсы_Аэропорты1" FromRole="Аэропорты" ToRole="Рейсы" />
+        </EntityType>
+        <EntityType Name="Билеты">
+          <Key>
+            <PropertyRef Name="КодБилета" />
+          </Key>
+          <Property Name="КодБилета" Type="Int64" Nullable="false" />
+          <Property Name="КодРейса" Type="Int32" Nullable="false" />
+          <Property Name="КодАвиакомпании" Type="Int32" Nullable="false" />
+          <Property Name="КодПассажира" Type="Int32" Nullable="false" />
+          <Property Name="НазваниеКласса" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ДатаПокупкиБилета" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ВремяПокупкиБилета" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Багаж" Type="Boolean" />
+          <NavigationProperty Name="Авиакомпании" Relationship="Self.FK_Билеты_Авиакомпании" FromRole="Билеты" ToRole="Авиакомпании" />
+          <NavigationProperty Name="Пассажиры" Relationship="Self.FK_Билеты_Пассажиры" FromRole="Билеты" ToRole="Пассажиры" />
+          <NavigationProperty Name="Рейсы" Relationship="Self.FK_Билеты_Рейсы" FromRole="Билеты" ToRole="Рейсы" />
+        </EntityType>
+        <EntityType Name="Пассажиры">
+          <Key>
+            <PropertyRef Name="КодПассажира" />
+          </Key>
+          <Property Name="КодПассажира" Type="Int32" Nullable="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="СерияПаспорта" Type="Int32" Nullable="false" />
+          <Property Name="НомерПаспорта" Type="Int32" Nullable="false" />
+          <Property Name="МобильныйТелефон" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ДатаРождения" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Билеты" Relationship="Self.FK_Билеты_Пассажиры" FromRole="Пассажиры" ToRole="Билеты" />
+        </EntityType>
+        <EntityType Name="Рейсы">
+          <Key>
+            <PropertyRef Name="КодРейса" />
+          </Key>
+          <Property Name="КодРейса" Type="Int32" Nullable="false" />
+          <Property Name="КодАвиакомпании" Type="Int32" Nullable="false" />
+          <Property Name="КодСамолёта" Type="Int32" Nullable="false" />
+          <Property Name="Отправление" Type="Int32" Nullable="false" />
+          <Property Name="Прибытие" Type="Int32" Nullable="false" />
+          <Property Name="ДатаОтправления" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ДатаПрибытия" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ВремяОтправления" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="ВремяПрибытия" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="ДлительностьПерелета" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="СтоимостьБилета" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Авиакомпании" Relationship="Self.FK_Рейсы_Авиакомпании" FromRole="Рейсы" ToRole="Авиакомпании" />
+          <NavigationProperty Name="Аэропорты" Relationship="Self.FK_Рейсы_Аэропорты" FromRole="Рейсы" ToRole="Аэропорты" />
+          <NavigationProperty Name="Аэропорты1" Relationship="Self.FK_Рейсы_Аэропорты1" FromRole="Рейсы" ToRole="Аэропорты" />
+          <NavigationProperty Name="Билеты" Relationship="Self.FK_Билеты_Рейсы" FromRole="Рейсы" ToRole="Билеты" />
+          <NavigationProperty Name="Самолеты" Relationship="Self.FK_Рейсы_Самолеты" FromRole="Рейсы" ToRole="Самолеты" />
+        </EntityType>
+        <EntityType Name="Самолеты">
+          <Key>
+            <PropertyRef Name="КодСамолета" />
+          </Key>
+          <Property Name="КодСамолета" Type="Int32" Nullable="false" />
+          <Property Name="КодАвиакомпании" Type="Int32" Nullable="false" />
+          <Property Name="МодельСамолета" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="КоличествоМест" Type="Int32" />
+          <NavigationProperty Name="Авиакомпании" Relationship="Self.FK_Самолеты_Авиакомпании" FromRole="Самолеты" ToRole="Авиакомпании" />
+          <NavigationProperty Name="Рейсы" Relationship="Self.FK_Рейсы_Самолеты" FromRole="Самолеты" ToRole="Рейсы" />
+        </EntityType>
+        <Association Name="FK_Билеты_Авиакомпании">
+          <End Role="Авиакомпании" Type="Self.Авиакомпании" Multiplicity="1" />
+          <End Role="Билеты" Type="Self.Билеты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Авиакомпании">
+              <PropertyRef Name="КодАвиакомпании" />
+            </Principal>
+            <Dependent Role="Билеты">
+              <PropertyRef Name="КодАвиакомпании" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Рейсы_Авиакомпании">
+          <End Role="Авиакомпании" Type="Self.Авиакомпании" Multiplicity="1" />
+          <End Role="Рейсы" Type="Self.Рейсы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Авиакомпании">
+              <PropertyRef Name="КодАвиакомпании" />
+            </Principal>
+            <Dependent Role="Рейсы">
+              <PropertyRef Name="КодАвиакомпании" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Самолеты_Авиакомпании">
+          <End Role="Авиакомпании" Type="Self.Авиакомпании" Multiplicity="1" />
+          <End Role="Самолеты" Type="Self.Самолеты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Авиакомпании">
+              <PropertyRef Name="КодАвиакомпании" />
+            </Principal>
+            <Dependent Role="Самолеты">
+              <PropertyRef Name="КодАвиакомпании" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Рейсы_Аэропорты">
+          <End Role="Аэропорты" Type="Self.Аэропорты" Multiplicity="1" />
+          <End Role="Рейсы" Type="Self.Рейсы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Аэропорты">
+              <PropertyRef Name="КодАэропорта" />
+            </Principal>
+            <Dependent Role="Рейсы">
+              <PropertyRef Name="Отправление" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Рейсы_Аэропорты1">
+          <End Role="Аэропорты" Type="Self.Аэропорты" Multiplicity="1" />
+          <End Role="Рейсы" Type="Self.Рейсы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Аэропорты">
+              <PropertyRef Name="КодАэропорта" />
+            </Principal>
+            <Dependent Role="Рейсы">
+              <PropertyRef Name="Прибытие" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Билеты_Пассажиры">
+          <End Role="Пассажиры" Type="Self.Пассажиры" Multiplicity="1" />
+          <End Role="Билеты" Type="Self.Билеты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пассажиры">
+              <PropertyRef Name="КодПассажира" />
+            </Principal>
+            <Dependent Role="Билеты">
+              <PropertyRef Name="КодПассажира" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Билеты_Рейсы">
+          <End Role="Рейсы" Type="Self.Рейсы" Multiplicity="1" />
+          <End Role="Билеты" Type="Self.Билеты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Рейсы">
+              <PropertyRef Name="КодРейса" />
+            </Principal>
+            <Dependent Role="Билеты">
+              <PropertyRef Name="КодРейса" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Рейсы_Самолеты">
+          <End Role="Самолеты" Type="Self.Самолеты" Multiplicity="1" />
+          <End Role="Рейсы" Type="Self.Рейсы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Самолеты">
+              <PropertyRef Name="КодСамолета" />
+            </Principal>
+            <Dependent Role="Рейсы">
+              <PropertyRef Name="КодСамолёта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Продажа_билетов_на_самолетEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Авиакомпании" EntityType="Self.Авиакомпании" />
+          <EntitySet Name="Аэропорты" EntityType="Self.Аэропорты" />
+          <EntitySet Name="Билеты" EntityType="Self.Билеты" />
+          <EntitySet Name="Пассажиры" EntityType="Self.Пассажиры" />
+          <EntitySet Name="Рейсы" EntityType="Self.Рейсы" />
+          <EntitySet Name="Самолеты" EntityType="Self.Самолеты" />
+          <AssociationSet Name="FK_Билеты_Авиакомпании" Association="Self.FK_Билеты_Авиакомпании">
+            <End Role="Авиакомпании" EntitySet="Авиакомпании" />
+            <End Role="Билеты" EntitySet="Билеты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Рейсы_Авиакомпании" Association="Self.FK_Рейсы_Авиакомпании">
+            <End Role="Авиакомпании" EntitySet="Авиакомпании" />
+            <End Role="Рейсы" EntitySet="Рейсы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Самолеты_Авиакомпании" Association="Self.FK_Самолеты_Авиакомпании">
+            <End Role="Авиакомпании" EntitySet="Авиакомпании" />
+            <End Role="Самолеты" EntitySet="Самолеты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Рейсы_Аэропорты" Association="Self.FK_Рейсы_Аэропорты">
+            <End Role="Аэропорты" EntitySet="Аэропорты" />
+            <End Role="Рейсы" EntitySet="Рейсы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Рейсы_Аэропорты1" Association="Self.FK_Рейсы_Аэропорты1">
+            <End Role="Аэропорты" EntitySet="Аэропорты" />
+            <End Role="Рейсы" EntitySet="Рейсы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Билеты_Пассажиры" Association="Self.FK_Билеты_Пассажиры">
+            <End Role="Пассажиры" EntitySet="Пассажиры" />
+            <End Role="Билеты" EntitySet="Билеты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Билеты_Рейсы" Association="Self.FK_Билеты_Рейсы">
+            <End Role="Рейсы" EntitySet="Рейсы" />
+            <End Role="Билеты" EntitySet="Билеты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Рейсы_Самолеты" Association="Self.FK_Рейсы_Самолеты">
+            <End Role="Самолеты" EntitySet="Самолеты" />
+            <End Role="Рейсы" EntitySet="Рейсы" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="ВозрастПассажиров" ReturnType="Collection(Model.ВозрастПассажиров_Result)" />
+          <FunctionImport Name="ГлавноеОкно" ReturnType="Collection(Model.ГлавноеОкно_Result)" />
+          <FunctionImport Name="ГородОтправления" ReturnType="Collection(Model.ГородОтправления_Result)">
+          <Parameter Name="ГородОтправления" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ИзменениеТелефонаАвиакомпании">
+            <Parameter Name="КодАвиакомпании" Mode="In" Type="Int32" />
+            <Parameter Name="Телефон" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="МодельСамолета" ReturnType="Collection(Model.МодельСамолета_Result)" />
+          <FunctionImport Name="НоваяАвиакомпания">
+            <Parameter Name="КодАвиакомпании" Mode="In" Type="Int32" />
+            <Parameter Name="Наименование" Mode="In" Type="String" />
+            <Parameter Name="Телефон" Mode="In" Type="String" />
+            <Parameter Name="ЭлектронныйАдрес" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="НовыйПассажир">
+            <Parameter Name="КодПассажира" Mode="In" Type="Int32" />
+            <Parameter Name="Фамилия" Mode="In" Type="String" />
+            <Parameter Name="Имя" Mode="In" Type="String" />
+            <Parameter Name="Отчество" Mode="In" Type="String" />
+            <Parameter Name="СерияПаспорта" Mode="In" Type="Int32" />
+            <Parameter Name="НомерПаспорта" Mode="In" Type="Int32" />
+            <Parameter Name="МобильныйТелефон" Mode="In" Type="String" />
+            <Parameter Name="ДатаРождения" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="ОпределеннаяДатаРейса" ReturnType="Collection(Model.ОпределеннаяДатаРейса_Result)" />
+          <FunctionImport Name="ОпределеннаяПочтаИНомерАвиакомпании" ReturnType="Collection(Model.ОпределеннаяПочтаИНомерАвиакомпании_Result)">
+          <Parameter Name="КодАвиакомпании" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ОпределенныйКласс" ReturnType="Collection(Model.ОпределенныйКласс_Result)">
+          <Parameter Name="КлассСамолета" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="СтоимостьОпределенногоРейса" ReturnType="Collection(Model.СтоимостьОпределенногоРейса_Result)">
+          <Parameter Name="КодРейса" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="УдалениеАэропорта">
+          <Parameter Name="КодАэропорта" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="УдалениеБилета">
+          <Parameter Name="КодБилета" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="СамолетыПроцедура" ReturnType="Collection(Model.СамолетыПроцедура_Result)" />
+          <FunctionImport Name="НовыйСамолет">
+            <Parameter Name="КодСамолета" Mode="In" Type="Int32" />
+            <Parameter Name="КодАвиакомпании" Mode="In" Type="Int32" />
+            <Parameter Name="МодельСамолета" Mode="In" Type="String" />
+            <Parameter Name="КоличествоМест" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="БилетыПроцедура" ReturnType="Collection(Model.БилетыПроцедура_Result)" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ВозрастПассажиров_Result">
+          <Property Type="String" Name="ФИО" Nullable="true" MaxLength="57" />
+          <Property Type="Int32" Name="Возраст" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ГлавноеОкно_Result">
+          <Property Type="Int32" Name="КодПассажира" Nullable="false" />
+          <Property Type="String" Name="Фамилия" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Имя" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Отчество" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="СерияПаспорта" Nullable="false" />
+          <Property Type="Int32" Name="НомерПаспорта" Nullable="false" />
+          <Property Type="String" Name="МобильныйТелефон" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="ДатаРождения" Nullable="false" />
+          <Property Type="String" Name="НазваниеКласса" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="Багаж" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ГородОтправления_Result">
+          <Property Type="String" Name="Фамилия" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Имя" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Отчество" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ГородОтправления" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="МодельСамолета_Result">
+          <Property Type="String" Name="Наименование" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="МодельСамолета" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ОпределеннаяДатаРейса_Result">
+          <Property Type="Int32" Name="КодРейса" Nullable="false" />
+          <Property Type="Int32" Name="КодАвиакомпании" Nullable="false" />
+          <Property Type="Int32" Name="КодСамолёта" Nullable="false" />
+          <Property Type="Int32" Name="Отправление" Nullable="false" />
+          <Property Type="Int32" Name="Прибытие" Nullable="false" />
+          <Property Type="DateTime" Name="ДатаОтправления" Nullable="false" />
+          <Property Type="DateTime" Name="ДатаПрибытия" Nullable="false" />
+          <Property Type="Time" Name="ВремяОтправления" Nullable="false" />
+          <Property Type="Time" Name="ВремяПрибытия" Nullable="false" />
+          <Property Type="String" Name="ДлительностьПерелета" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="СтоимостьБилета" Nullable="false" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="ОпределеннаяПочтаИНомерАвиакомпании_Result">
+          <Property Type="Int32" Name="НомерАвиакомпании" Nullable="true" />
+          <Property Type="String" Name="Телефон" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ЭлектронныйАдрес" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ОпределенныйКласс_Result">
+          <Property Type="String" Name="Фамилия" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Имя" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Отчество" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="НазваниеКласса" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="СтоимостьОпределенногоРейса_Result">
+          <Property Type="Int32" Name="НомерРейса" Nullable="true" />
+          <Property Type="Decimal" Name="СтоимостьБилета" Nullable="false" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="СамолетыПроцедура_Result">
+          <Property Type="Int32" Name="КодСамолета" Nullable="false" />
+          <Property Type="String" Name="Наименование" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="МодельСамолета" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="КоличествоМест" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="БилетыПроцедура_Result">
+          <Property Type="Int64" Name="КодБилета" Nullable="false" />
+          <Property Type="Int32" Name="КодРейса" Nullable="false" />
+          <Property Type="String" Name="Наименование" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Фамилия" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Имя" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Отчество" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="НазваниеКласса" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="Багаж" Nullable="true" />
+          <Property Type="DateTime" Name="ДатаОтправления" Nullable="false" />
+          <Property Type="Time" Name="ВремяОтправления" Nullable="false" />
+          <Property Type="String" Name="Город_назначение" Nullable="false" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Продажа_билетов_на_самолетEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Авиакомпании">
+            <EntityTypeMapping TypeName="Model.Авиакомпании">
+              <MappingFragment StoreEntitySet="Авиакомпании">
+                <ScalarProperty Name="КодАвиакомпании" ColumnName="КодАвиакомпании" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="ЭлектронныйАдрес" ColumnName="ЭлектронныйАдрес" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Аэропорты">
+            <EntityTypeMapping TypeName="Model.Аэропорты">
+              <MappingFragment StoreEntitySet="Аэропорты">
+                <ScalarProperty Name="КодАэропорта" ColumnName="КодАэропорта" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Город" ColumnName="Город" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Билеты">
+            <EntityTypeMapping TypeName="Model.Билеты">
+              <MappingFragment StoreEntitySet="Билеты">
+                <ScalarProperty Name="КодБилета" ColumnName="КодБилета" />
+                <ScalarProperty Name="КодРейса" ColumnName="КодРейса" />
+                <ScalarProperty Name="КодАвиакомпании" ColumnName="КодАвиакомпании" />
+                <ScalarProperty Name="КодПассажира" ColumnName="КодПассажира" />
+                <ScalarProperty Name="НазваниеКласса" ColumnName="НазваниеКласса" />
+                <ScalarProperty Name="ДатаПокупкиБилета" ColumnName="ДатаПокупкиБилета" />
+                <ScalarProperty Name="ВремяПокупкиБилета" ColumnName="ВремяПокупкиБилета" />
+                <ScalarProperty Name="Багаж" ColumnName="Багаж" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Пассажиры">
+            <EntityTypeMapping TypeName="Model.Пассажиры">
+              <MappingFragment StoreEntitySet="Пассажиры">
+                <ScalarProperty Name="КодПассажира" ColumnName="КодПассажира" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="СерияПаспорта" ColumnName="СерияПаспорта" />
+                <ScalarProperty Name="НомерПаспорта" ColumnName="НомерПаспорта" />
+                <ScalarProperty Name="МобильныйТелефон" ColumnName="МобильныйТелефон" />
+                <ScalarProperty Name="ДатаРождения" ColumnName="ДатаРождения" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Рейсы">
+            <EntityTypeMapping TypeName="Model.Рейсы">
+              <MappingFragment StoreEntitySet="Рейсы">
+                <ScalarProperty Name="КодРейса" ColumnName="КодРейса" />
+                <ScalarProperty Name="КодАвиакомпании" ColumnName="КодАвиакомпании" />
+                <ScalarProperty Name="КодСамолёта" ColumnName="КодСамолёта" />
+                <ScalarProperty Name="Отправление" ColumnName="Отправление" />
+                <ScalarProperty Name="Прибытие" ColumnName="Прибытие" />
+                <ScalarProperty Name="ДатаОтправления" ColumnName="ДатаОтправления" />
+                <ScalarProperty Name="ДатаПрибытия" ColumnName="ДатаПрибытия" />
+                <ScalarProperty Name="ВремяОтправления" ColumnName="ВремяОтправления" />
+                <ScalarProperty Name="ВремяПрибытия" ColumnName="ВремяПрибытия" />
+                <ScalarProperty Name="ДлительностьПерелета" ColumnName="ДлительностьПерелета" />
+                <ScalarProperty Name="СтоимостьБилета" ColumnName="СтоимостьБилета" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Самолеты">
+            <EntityTypeMapping TypeName="Model.Самолеты">
+              <MappingFragment StoreEntitySet="Самолеты">
+                <ScalarProperty Name="КодСамолета" ColumnName="КодСамолета" />
+                <ScalarProperty Name="КодАвиакомпании" ColumnName="КодАвиакомпании" />
+                <ScalarProperty Name="МодельСамолета" ColumnName="МодельСамолета" />
+                <ScalarProperty Name="КоличествоМест" ColumnName="КоличествоМест" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище Model.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище Model.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище Model.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище Model.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище Model.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище Model.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище Model.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="ВозрастПассажиров" FunctionName="Хранилище Model.ВозрастПассажиров">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.ВозрастПассажиров_Result">
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Возраст" ColumnName="Возраст" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ГлавноеОкно" FunctionName="Хранилище Model.ГлавноеОкно">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.ГлавноеОкно_Result">
+                <ScalarProperty Name="КодПассажира" ColumnName="КодПассажира" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="СерияПаспорта" ColumnName="СерияПаспорта" />
+                <ScalarProperty Name="НомерПаспорта" ColumnName="НомерПаспорта" />
+                <ScalarProperty Name="МобильныйТелефон" ColumnName="МобильныйТелефон" />
+                <ScalarProperty Name="ДатаРождения" ColumnName="ДатаРождения" />
+                <ScalarProperty Name="НазваниеКласса" ColumnName="НазваниеКласса" />
+                <ScalarProperty Name="Багаж" ColumnName="Багаж" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ГородОтправления" FunctionName="Хранилище Model.ГородОтправления">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.ГородОтправления_Result">
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="ГородОтправления" ColumnName="ГородОтправления" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ИзменениеТелефонаАвиакомпании" FunctionName="Хранилище Model.ИзменениеТелефонаАвиакомпании" />
+          <FunctionImportMapping FunctionImportName="МодельСамолета" FunctionName="Хранилище Model.МодельСамолета">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.МодельСамолета_Result">
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="МодельСамолета" ColumnName="МодельСамолета" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="НоваяАвиакомпания" FunctionName="Хранилище Model.НоваяАвиакомпания" />
+          <FunctionImportMapping FunctionImportName="НовыйПассажир" FunctionName="Хранилище Model.НовыйПассажир" />
+          <FunctionImportMapping FunctionImportName="ОпределеннаяДатаРейса" FunctionName="Хранилище Model.ОпределеннаяДатаРейса">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.ОпределеннаяДатаРейса_Result">
+                <ScalarProperty Name="КодРейса" ColumnName="КодРейса" />
+                <ScalarProperty Name="КодАвиакомпании" ColumnName="КодАвиакомпании" />
+                <ScalarProperty Name="КодСамолёта" ColumnName="КодСамолёта" />
+                <ScalarProperty Name="Отправление" ColumnName="Отправление" />
+                <ScalarProperty Name="Прибытие" ColumnName="Прибытие" />
+                <ScalarProperty Name="ДатаОтправления" ColumnName="ДатаОтправления" />
+                <ScalarProperty Name="ДатаПрибытия" ColumnName="ДатаПрибытия" />
+                <ScalarProperty Name="ВремяОтправления" ColumnName="ВремяОтправления" />
+                <ScalarProperty Name="ВремяПрибытия" ColumnName="ВремяПрибытия" />
+                <ScalarProperty Name="ДлительностьПерелета" ColumnName="ДлительностьПерелета" />
+                <ScalarProperty Name="СтоимостьБилета" ColumnName="СтоимостьБилета" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ОпределеннаяПочтаИНомерАвиакомпании" FunctionName="Хранилище Model.ОпределеннаяПочтаИНомерАвиакомпании">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.ОпределеннаяПочтаИНомерАвиакомпании_Result">
+                <ScalarProperty Name="НомерАвиакомпании" ColumnName="НомерАвиакомпании" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="ЭлектронныйАдрес" ColumnName="ЭлектронныйАдрес" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ОпределенныйКласс" FunctionName="Хранилище Model.ОпределенныйКласс">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.ОпределенныйКласс_Result">
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="НазваниеКласса" ColumnName="НазваниеКласса" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="СтоимостьОпределенногоРейса" FunctionName="Хранилище Model.СтоимостьОпределенногоРейса">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.СтоимостьОпределенногоРейса_Result">
+                <ScalarProperty Name="НомерРейса" ColumnName="НомерРейса" />
+                <ScalarProperty Name="СтоимостьБилета" ColumnName="СтоимостьБилета" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="УдалениеАэропорта" FunctionName="Хранилище Model.УдалениеАэропорта" />
+          <FunctionImportMapping FunctionImportName="УдалениеБилета" FunctionName="Хранилище Model.УдалениеБилета" />
+          <FunctionImportMapping FunctionImportName="СамолетыПроцедура" FunctionName="Хранилище Model.СамолетыПроцедура">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.СамолетыПроцедура_Result">
+                <ScalarProperty Name="КодСамолета" ColumnName="КодСамолета" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="МодельСамолета" ColumnName="МодельСамолета" />
+                <ScalarProperty Name="КоличествоМест" ColumnName="КоличествоМест" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="НовыйСамолет" FunctionName="Хранилище Model.НовыйСамолет" />
+          <FunctionImportMapping FunctionImportName="БилетыПроцедура" FunctionName="Хранилище Model.БилетыПроцедура">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.БилетыПроцедура_Result">
+                <ScalarProperty Name="КодБилета" ColumnName="КодБилета" />
+                <ScalarProperty Name="КодРейса" ColumnName="КодРейса" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="НазваниеКласса" ColumnName="НазваниеКласса" />
+                <ScalarProperty Name="Багаж" ColumnName="Багаж" />
+                <ScalarProperty Name="ДатаОтправления" ColumnName="ДатаОтправления" />
+                <ScalarProperty Name="ВремяОтправления" ColumnName="ВремяОтправления" />
+                <ScalarProperty Name="Город_назначение" ColumnName="Город-назначение" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

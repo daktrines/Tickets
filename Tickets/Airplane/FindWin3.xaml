@@ -1,0 +1,14 @@
+﻿<Window x:Class="Tickets.FindWin3"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tickets"
+        mc:Ignorable="d"
+       Title="FindWin" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <Label Height="27" >Поиск по модели самолета</Label>
+        <TextBox x:Name="Find" Margin="3" Height="24" Width="143" />
+        <Button x:Name="FindForm" IsDefault="True" Content="Найти" Margin="3" Click="FindForm_Click" Height="26"/>
+    </StackPanel>
+</Window>
