@@ -12,7 +12,7 @@
                 <Label >Код Билета</Label>
                 <TextBox x:Name="КодБилета" Margin="3" />
                 <Label >Код Рейса</Label>
-                <TextBox x:Name="КодРейса" Margin="3" TextChanged="КодРейса_TextChanged" />
+                <ComboBox x:Name="КодРейса" Margin="3" DisplayMemberPath="КодРейса" SelectionChanged="КодРейса_SelectionChanged"/>
                 <Label >Наименование Авиакомпании</Label>
                 <ComboBox x:Name="Наименование" Margin="3" DisplayMemberPath="Наименование"/>
                 <Label >Фамилия</Label>

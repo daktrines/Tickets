@@ -52,7 +52,7 @@ namespace Tickets
              //db.НовыйСамолет(Convert.ToInt32(КодСамолета.Text), ((Авиакомпании)Наименование.SelectedValue).КодАвиакомпании, МодельСамолета.Text, Convert.ToInt32(КоличествоМест.Text));
                 #region СозданиеНовогоБилета
                 p1 = new Билеты();
-                p1.КодБилета = Convert.ToInt32(КодБилета.Text);
+                p1.КодБилета = Convert.ToInt64(КодБилета.Text);
                 #region Проверка наличия такого рейса и его присваивание
                 int RaceId = Convert.ToInt32(КодРейса.Text);
                 var codes = from table in db.Рейсы
@@ -110,14 +110,19 @@ namespace Tickets
             db.Билеты.Load();
             //Поличаем список из другой таблицы
             Наименование.ItemsSource = db.Авиакомпании.Local.ToBindingList();
+            КодРейса.ItemsSource = db.Рейсы.Local.ToBindingList();
         }
-        private void КодРейса_TextChanged(object sender, TextChangedEventArgs e)
+
+        private void КодРейса_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
-            {                
-                AddTable.ItemsSource = db.Рейсы.Local.ToBindingList().Where(p => p.КодРейса == Convert.ToInt32(КодРейса.Text));
+            {
+                AddTable.ItemsSource = db.Рейсы.Local.ToBindingList().Where(p => p.КодРейса == Convert.ToInt32(((Рейсы)((ComboBox)sender).SelectedItem).КодРейса));
             }
-            catch { }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
