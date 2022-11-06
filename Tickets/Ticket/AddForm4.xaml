@@ -48,8 +48,8 @@
             <DataGrid x:Name="AddTable" IsReadOnly="True" AutoGenerateColumns="False" MinWidth=" 150">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Код Рейса" Binding="{Binding КодРейса}"/>
-                    <DataGridTextColumn Header="КодАвиакомпании" Binding="{Binding КодАвиакомпании}"/>
-                    <DataGridTextColumn Header="КодСамолёта" Binding="{Binding КодСамолёта}"/>
+                    <DataGridTextColumn Header="Код Авиакомпании" Binding="{Binding КодАвиакомпании}"/>
+                    <DataGridTextColumn Header="Код Самолёта" Binding="{Binding КодСамолёта}"/>
                     <DataGridTextColumn Header="Отправление" Binding="{Binding Отправление}"/>
                     <DataGridTextColumn Header="Прибытие" Binding="{Binding Прибытие}"/>
                     <DataGridTextColumn Header="Дата Отправления" Binding="{Binding ДатаОтправления}"/>
