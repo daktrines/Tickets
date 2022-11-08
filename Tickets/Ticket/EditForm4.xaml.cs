@@ -56,7 +56,7 @@ namespace Tickets
                 if (codes.Count() == 0) throw new Exception("Не существует указанного рейса");
                 else p1.КодРейса = RaceId;
                 #endregion
-                p1.КодАвиакомпании = db.Авиакомпании.Local.ToBindingList().Where(p => p.Наименование == ((Авиакомпании)Наименование.SelectedValue).Наименование).First().КодАвиакомпании;
+                p1.КодАвиакомпании = db.Авиакомпании.Local.ToBindingList().Where(p => p.Наименование == Наименование.Text).First().КодАвиакомпании;
                 p1.НазваниеКласса = НазваниеКласса.Text;
                 #region Багаж
                 if (Багаж.Text == "Есть") p1.Багаж = true;
@@ -99,7 +99,6 @@ namespace Tickets
             db.Рейсы.Load();
             db.Билеты.Load();
             //Поличаем список из другой таблицы
-            Наименование.ItemsSource = db.Авиакомпании.Local.ToBindingList();
             КодРейса.ItemsSource = db.Рейсы.Local.ToBindingList();
             Фамилия.ItemsSource = db.Пассажиры.Local.ToBindingList();
 
@@ -107,7 +106,7 @@ namespace Tickets
             p1 = db.Билеты.Find(ContextDB.ID);
             КодБилета.Text = p1.КодБилета.ToString();
             КодРейса.Text = p1.КодРейса.ToString();
-            Наименование.SelectedValue = db.Авиакомпании.Local.ToBindingList().Where(p => p.КодАвиакомпании == p1.КодАвиакомпании).First();
+            Наименование.Text = db.Авиакомпании.Local.ToBindingList().Where(p => p.КодАвиакомпании == p1.КодАвиакомпании).First().Наименование;
             var passenger = db.Пассажиры.Local.ToBindingList().Where(p => p.КодПассажира == p1.КодПассажира).First();
             Фамилия.Text = passenger.Фамилия;
             Имя.Text = passenger.Имя;
@@ -128,6 +127,7 @@ namespace Tickets
             try
             {
                 AddTable.ItemsSource = db.Рейсы.Local.ToBindingList().Where(p => p.КодРейса == ((Рейсы)КодРейса.SelectedValue).КодРейса);
+                Наименование.Text = db.Авиакомпании.Local.ToBindingList().Where(p => p.КодАвиакомпании == ((Рейсы)КодРейса.SelectedValue).КодАвиакомпании).First().Наименование;
             }
             catch (Exception ex)//Если что пойдет не так - при точке останова глянуть значение ex
             {

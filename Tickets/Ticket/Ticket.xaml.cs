@@ -59,8 +59,8 @@ namespace Tickets
                 //Получаем ключ текущей записи
                 ContextDB.ID = ((БилетыПроцедура_Result)DataGrid1.SelectedValue).КодБилета;
                 //Открываем форму Редактировать
-                //EditForm4 edit = new EditForm4(d);
-                //edit.ShowDialog();
+                EditForm4 edit = new EditForm4();
+                edit.ShowDialog();
                 //Обновляем таблицу
                 DataGrid1.ItemsSource = db.БилетыПроцедура();
                 DataGrid1.Focus();

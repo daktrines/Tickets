@@ -59,7 +59,7 @@ namespace Tickets
                 if (codes.Count() == 0) throw new Exception("Не существует указанного рейса");
                 else p1.КодРейса = RaceId;
                 #endregion
-                p1.КодАвиакомпании = db.Авиакомпании.Local.ToBindingList().Where(p => p.Наименование == ((Авиакомпании)Наименование.SelectedValue).Наименование).First().КодАвиакомпании;
+                p1.КодАвиакомпании = db.Авиакомпании.Local.ToBindingList().Where(p => p.Наименование == Наименование.Text).First().КодАвиакомпании;
                 p1.НазваниеКласса = НазваниеКласса.Text;
                 #region Багаж
                 if (Багаж.Text == "Есть") p1.Багаж = true;
@@ -117,6 +117,7 @@ namespace Tickets
             try
             {
                 AddTable.ItemsSource = db.Рейсы.Local.ToBindingList().Where(p => p.КодРейса == ((Рейсы)КодРейса.SelectedValue).КодРейса);
+                Наименование.Text = db.Авиакомпании.Local.ToBindingList().Where(p => p.КодАвиакомпании == ((Рейсы)КодРейса.SelectedValue).КодАвиакомпании).First().Наименование;
             }
             catch (Exception ex)//Если что пойдет не так - при точке останова глянуть значение ex
             {
