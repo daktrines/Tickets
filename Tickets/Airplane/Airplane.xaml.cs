@@ -74,8 +74,13 @@ namespace Tickets
             {
                 try
                 {
+                    #region Новое
+                    if (DataGrid1.SelectedValue == null) throw new Exception();
                     //Получаем текущую запись
-                    Самолеты d = db.Самолеты.Local.ElementAt(indexRow);
+                    Самолеты d = db.Самолеты.Find(((СамолетыПроцедура_Result)DataGrid1.SelectedValue).КодСамолета);
+                    #endregion
+                    ////Получаем текущую запись
+                    //Самолеты d = db.Самолеты.Local.ElementAt(indexRow);
                     //Удаляем запись
                     db.Самолеты.Remove(d);
                     db.SaveChanges();

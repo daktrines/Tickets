@@ -5,18 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tickets"
         mc:Ignorable="d"
-        Title="EditForm" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Title="EditForm" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <DockPanel >
         <GroupBox >
             <StackPanel >
-                <Label >Код Самолета</Label>
-                <TextBox x:Name="КодСамолета" IsReadOnly="True" Margin="3" />
+                <Label >Код Билета</Label>
+                <TextBox x:Name="КодБилета" IsReadOnly="True" Margin="3" />
+                <Label >Код Рейса</Label>
+                <ComboBox x:Name="КодРейса" Margin="3" DisplayMemberPath="КодРейса" SelectionChanged="КодРейса_SelectionChanged"/>
                 <Label >Наименование Авиакомпании</Label>
-                <ComboBox x:Name="Наименование" Margin="3" DisplayMemberPath="Наименование" SelectionChanged="Наименование_SelectionChanged"/>
-                <Label >Модель Самолета</Label>
-                <TextBox x:Name="МодельСамолета" Margin="3" />
-                <Label >Количество Мест</Label>
-                <TextBox x:Name="КоличествоМест" Margin="3" />
+                <ComboBox x:Name="Наименование" Margin="3" DisplayMemberPath="Наименование"/>
+                <Label >Фамилия</Label>
+                <ComboBox x:Name="Фамилия" Margin="3" DisplayMemberPath="Фамилия" SelectionChanged="Фамилия_SelectionChanged"/>
+                <Label >Имя</Label>
+                <TextBox x:Name="Имя" Margin="3" IsReadOnly="True"/>
+                <Label >Отчество</Label>
+                <TextBox x:Name="Отчество" Margin="3" IsReadOnly="True"/>
+                <Label >Название Класса</Label>
+                <ComboBox x:Name="НазваниеКласса" Margin="3">
+                    <ComboBoxItem>Эконом-класс</ComboBoxItem>
+                    <ComboBoxItem>Бизнес-класс</ComboBoxItem>
+                    </ComboBox>
+                <Label >Багаж</Label>
+                <ComboBox x:Name="Багаж" Margin="3">
+                    <ComboBoxItem>Есть</ComboBoxItem>
+                    <ComboBoxItem>Нет</ComboBoxItem>
+                </ComboBox>
                 <Button Content="Редактировать" IsDefault="True" Margin="3" Click="AddMain_Click"/>
                 <Button Content="Отмена" Margin="3" Click="CloseMain_Click" />
             </StackPanel>
@@ -24,10 +38,17 @@
         <GroupBox >
             <DataGrid x:Name="AddTable" IsReadOnly="True" AutoGenerateColumns="False" MinWidth=" 150">
                 <DataGrid.Columns>
+                    <DataGridTextColumn Header="Код Рейса" Binding="{Binding КодРейса}"/>
                     <DataGridTextColumn Header="Код Авиакомпании" Binding="{Binding КодАвиакомпании}"/>
-                    <DataGridTextColumn Header="Наименование" Binding="{Binding Наименование}"/>
-                    <DataGridTextColumn Header="Телефон" Binding="{Binding Телефон}"/>
-                    <DataGridTextColumn Header="Электронный Адрес" Binding="{Binding ЭлектронныйАдрес}"/>
+                    <DataGridTextColumn Header="Код Самолёта" Binding="{Binding КодСамолёта}"/>
+                    <DataGridTextColumn Header="Отправление" Binding="{Binding Отправление}"/>
+                    <DataGridTextColumn Header="Прибытие" Binding="{Binding Прибытие}"/>
+                    <DataGridTextColumn Header="Дата Отправления" Binding="{Binding ДатаОтправления}"/>
+                    <DataGridTextColumn Header="Дата Прибытия" Binding="{Binding ДатаПрибытия}"/>
+                    <DataGridTextColumn Header="Время Отправления" Binding="{Binding ВремяОтправления}"/>
+                    <DataGridTextColumn Header="Время Прибытия" Binding="{Binding ВремяПрибытия}"/>
+                    <DataGridTextColumn Header="Длительность Перелета" Binding="{Binding ДлительностьПерелета}"/>
+                    <DataGridTextColumn Header="Стоимость Билета" Binding="{Binding СтоимостьБилета}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>

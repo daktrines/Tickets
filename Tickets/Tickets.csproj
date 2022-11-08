@@ -64,14 +64,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Ticket\EditForm4.xaml.cs">
+      <DependentUpon>EditForm4.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ticket\AddForm4.xaml.cs">
       <DependentUpon>AddForm4.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ticket\Ticket.xaml.cs">
       <DependentUpon>Ticket.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Ticket\EditForm4.xaml.cs">
-      <DependentUpon>EditForm4.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ticket\FindWin4.xaml.cs">
       <DependentUpon>FindWin4.xaml</DependentUpon>
@@ -190,15 +190,15 @@
     <Compile Include="СтоимостьОпределенногоРейса_Result.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>
+    <Page Include="Ticket\EditForm4.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ticket\AddForm4.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ticket\Ticket.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Ticket\EditForm4.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -74,8 +74,13 @@ namespace Tickets
             {
                 try
                 {
+                    #region Новое
+                    if (DataGrid1.SelectedValue == null) throw new Exception();
                     //Получаем текущую запись
-                    Аэропорты d = db.Аэропорты.Local.ElementAt(indexRow);
+                    Аэропорты d = (Аэропорты)DataGrid1.SelectedValue;
+                    #endregion
+                    ////Получаем текущую запись
+                    //Аэропорты d = db.Аэропорты.Local.ElementAt(indexRow);
                     //Удаляем запись
                     db.Аэропорты.Remove(d);
                     db.SaveChanges();
