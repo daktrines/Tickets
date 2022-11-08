@@ -48,7 +48,6 @@ namespace Tickets
             {//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Изменение
              //db.НовыйСамолет(Convert.ToInt32(КодСамолета.Text), ((Авиакомпании)Наименование.SelectedValue).КодАвиакомпании, МодельСамолета.Text, Convert.ToInt32(КоличествоМест.Text));
 
-                p1.КодБилета = Convert.ToInt64(КодБилета.Text);
                 #region Проверка наличия такого рейса и его присваивание
                 int RaceId = Convert.ToInt32(КодРейса.Text);
                 var codes = from table in db.Рейсы
@@ -71,17 +70,13 @@ namespace Tickets
                 if (passengers.Count() == 0) throw new Exception("Не существует человека с таким ФИО!");
                 else
                 {
-                    int passengerId = passengers.First().КодПассажира;
-                    var tickets = from table in db.Билеты
-                                where table.КодПассажира == passengerId
-                                select table;
-                    if (tickets.Count() != 0) throw new Exception("Данный пассажир уже имеет билет!");
-                    else p1.КодПассажира = passengerId;
+                    int passengerId = passengers.First().КодПассажира;                   
+                    p1.КодПассажира = passengerId;
                 }
                 #endregion
                 p1.ДатаПокупкиБилета = DateTime.Now.Date;
                 p1.ВремяПокупкиБилета = DateTime.Now.TimeOfDay;
-                db.Билеты.Add(p1);
+                //db.Билеты.Add(p1);
                 //Сохраняем изменения
                 db.SaveChanges();
                 Close();
@@ -109,16 +104,22 @@ namespace Tickets
             Фамилия.ItemsSource = db.Пассажиры.Local.ToBindingList();
 
             //Отображаем запись
-            КодБилета.Text = Convert.ToString(p1.КодБилета);
-            КодРейса.Text = Convert.ToString(p1.КодРейса);
+            p1 = db.Билеты.Find(ContextDB.ID);
+            КодБилета.Text = p1.КодБилета.ToString();
+            КодРейса.Text = p1.КодРейса.ToString();
             Наименование.SelectedValue = db.Авиакомпании.Local.ToBindingList().Where(p => p.КодАвиакомпании == p1.КодАвиакомпании).First();
+            var passenger = db.Пассажиры.Local.ToBindingList().Where(p => p.КодПассажира == p1.КодПассажира).First();
+            Фамилия.Text = passenger.Фамилия;
+            Имя.Text = passenger.Имя;
+            Отчество.Text = passenger.Отчество;
+            НазваниеКласса.Text = p1.НазваниеКласса;
+            if (p1.Багаж == true) Багаж.SelectedIndex = 0;
+            else Багаж.SelectedIndex = 1;
+            //здесь хз че добавлять::::: УЖЕ НЕ ХЗ
 
-
-            //здесь хз че добавлять
-
-            ////Фамилия.Text = p1.Фамилия;
-            ////НазваниеКласса.Text = p1.НазваниеКласса;
-            ////Багаж.Text = p1.Багаж;
+                ////Фамилия.Text = p1.Фамилия;
+                ////НазваниеКласса.Text = p1.НазваниеКласса;
+                ////Багаж.Text = p1.Багаж;
 
         }  
 

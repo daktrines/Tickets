@@ -48,8 +48,7 @@ namespace Tickets
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            int indexRow = DataGrid1.SelectedIndex;
-            if (indexRow != -1)
+            if (DataGrid1.SelectedValue != null)
             {
                 //Загружаем таблицу из БД
                 db.Рейсы.Load();
@@ -58,7 +57,7 @@ namespace Tickets
                 db.Аэропорты.Load();
                 db.Пассажиры.Load();
                 //Получаем ключ текущей записи
-                Билеты d = db.Билеты.Local.ElementAt(indexRow);
+                ContextDB.ID = ((БилетыПроцедура_Result)DataGrid1.SelectedValue).КодБилета;
                 //Открываем форму Редактировать
                 //EditForm4 edit = new EditForm4(d);
                 //edit.ShowDialog();

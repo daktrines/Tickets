@@ -9,7 +9,7 @@ namespace Tickets
 {
     public static class ContextDB
     {
-        public static int ID;//Код записи
+        public static long ID;//Код записи
 
         //признак авторизации
         public static bool Login = false;
