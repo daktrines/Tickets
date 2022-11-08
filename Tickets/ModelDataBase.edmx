@@ -213,6 +213,7 @@
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="БилетыПроцедура" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ВозрастПассажиров" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ГлавнаяФорма" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ГлавноеОкно" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ГородОтправления" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ГородОтправления" Type="nvarchar" Mode="In" />
@@ -239,6 +240,12 @@
           <Parameter Name="МобильныйТелефон" Type="nvarchar" Mode="In" />
           <Parameter Name="ДатаРождения" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="НовыйСамолет" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="КодСамолета" Type="int" Mode="In" />
+          <Parameter Name="КодАвиакомпании" Type="int" Mode="In" />
+          <Parameter Name="МодельСамолета" Type="nvarchar" Mode="In" />
+          <Parameter Name="КоличествоМест" Type="int" Mode="In" />
+        </Function>
         <Function Name="ОпределеннаяДатаРейса" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ОпределеннаяПочтаИНомерАвиакомпании" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="КодАвиакомпании" Type="int" Mode="In" />
@@ -249,6 +256,7 @@
         <Function Name="ПассажирыСБагажом" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
           <Parameter Name="Багаж" Type="bit" Mode="In" />
         </Function>
+        <Function Name="СамолетыПроцедура" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="СовершеннолетниеПассажиры" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="СтоимостьОпределенногоРейса" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="КодРейса" Type="int" Mode="In" />
@@ -615,6 +623,13 @@
             <Parameter Name="КоличествоМест" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="БилетыПроцедура" ReturnType="Collection(Model.БилетыПроцедура_Result)" />
+          <FunctionImport Name="ГлавнаяФорма" ReturnType="Collection(Model.ГлавнаяФорма_Result)" />
+          <FunctionImport Name="НовыйСамолет1">
+            <Parameter Name="КодСамолета" Mode="In" Type="Int32" />
+            <Parameter Name="КодАвиакомпании" Mode="In" Type="Int32" />
+            <Parameter Name="МодельСамолета" Mode="In" Type="String" />
+            <Parameter Name="КоличествоМест" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -699,6 +714,24 @@
           <Property Type="DateTime" Name="ДатаОтправления" Nullable="false" />
           <Property Type="Time" Name="ВремяОтправления" Nullable="false" />
           <Property Type="String" Name="Город_назначение" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ГлавнаяФорма_Result">
+          <Property Type="Int32" Name="КодПассажира" Nullable="false" />
+          <Property Type="String" Name="Фамилия" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Имя" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Отчество" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="СерияПаспорта" Nullable="false" />
+          <Property Type="Int32" Name="НомерПаспорта" Nullable="false" />
+          <Property Type="String" Name="МобильныйТелефон" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="ДатаРождения" Nullable="false" />
+          <Property Type="String" Name="НазваниеКласса" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="Багаж" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="СамолетыПроцедура1_Result">
+          <Property Type="Int32" Name="КодСамолета" Nullable="false" />
+          <Property Type="String" Name="Наименование" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="МодельСамолета" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="КоличествоМест" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -924,6 +957,24 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ГлавнаяФорма" FunctionName="Хранилище Model.ГлавнаяФорма">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.ГлавнаяФорма_Result">
+                <ScalarProperty Name="КодПассажира" ColumnName="КодПассажира" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="СерияПаспорта" ColumnName="СерияПаспорта" />
+                <ScalarProperty Name="НомерПаспорта" ColumnName="НомерПаспорта" />
+                <ScalarProperty Name="МобильныйТелефон" ColumnName="МобильныйТелефон" />
+                <ScalarProperty Name="ДатаРождения" ColumnName="ДатаРождения" />
+                <ScalarProperty Name="НазваниеКласса" ColumnName="НазваниеКласса" />
+                <ScalarProperty Name="Багаж" ColumnName="Багаж" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="НовыйСамолет1" FunctionName="Хранилище Model.НовыйСамолет" />
+          <FunctionImportMapping FunctionImportName="СамолетыПроцедура" FunctionName="Хранилище Model.СамолетыПроцедура" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -313,5 +313,31 @@ namespace Tickets
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<БилетыПроцедура_Result>("БилетыПроцедура");
         }
+    
+        public virtual ObjectResult<ГлавнаяФорма_Result> ГлавнаяФорма()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ГлавнаяФорма_Result>("ГлавнаяФорма");
+        }
+    
+        public virtual int НовыйСамолет1(Nullable<int> кодСамолета, Nullable<int> кодАвиакомпании, string модельСамолета, Nullable<int> количествоМест)
+        {
+            var кодСамолетаParameter = кодСамолета.HasValue ?
+                new ObjectParameter("КодСамолета", кодСамолета) :
+                new ObjectParameter("КодСамолета", typeof(int));
+    
+            var кодАвиакомпанииParameter = кодАвиакомпании.HasValue ?
+                new ObjectParameter("КодАвиакомпании", кодАвиакомпании) :
+                new ObjectParameter("КодАвиакомпании", typeof(int));
+    
+            var модельСамолетаParameter = модельСамолета != null ?
+                new ObjectParameter("МодельСамолета", модельСамолета) :
+                new ObjectParameter("МодельСамолета", typeof(string));
+    
+            var количествоМестParameter = количествоМест.HasValue ?
+                new ObjectParameter("КоличествоМест", количествоМест) :
+                new ObjectParameter("КоличествоМест", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("НовыйСамолет1", кодСамолетаParameter, кодАвиакомпанииParameter, модельСамолетаParameter, количествоМестParameter);
+        }
     }
 }
