@@ -28,7 +28,7 @@ namespace Tickets
 
         Продажа_билетов_на_самолетEntities db = ContextDB.GetContext();
         Самолеты p1;//Элемент для работы с записью
-        Авиакомпании p2;//Элемент для работы с записью
+
 
 
         private void AddMain_Click(object sender, RoutedEventArgs e)

@@ -47,8 +47,7 @@ namespace Tickets
             try
             {//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Изменение
              //db.НовыйСамолет(Convert.ToInt32(КодСамолета.Text), ((Авиакомпании)Наименование.SelectedValue).КодАвиакомпании, МодельСамолета.Text, Convert.ToInt32(КоличествоМест.Text));
-                #region СозданиеНовогоБилета
-                p1 = new Билеты();
+
                 p1.КодБилета = Convert.ToInt64(КодБилета.Text);
                 #region Проверка наличия такого рейса и его присваивание
                 int RaceId = Convert.ToInt32(КодРейса.Text);
@@ -82,7 +81,6 @@ namespace Tickets
                 #endregion
                 p1.ДатаПокупкиБилета = DateTime.Now.Date;
                 p1.ВремяПокупкиБилета = DateTime.Now.TimeOfDay;
-                #endregion
                 db.Билеты.Add(p1);
                 //Сохраняем изменения
                 db.SaveChanges();
@@ -109,7 +107,20 @@ namespace Tickets
             Наименование.ItemsSource = db.Авиакомпании.Local.ToBindingList();
             КодРейса.ItemsSource = db.Рейсы.Local.ToBindingList();
             Фамилия.ItemsSource = db.Пассажиры.Local.ToBindingList();
-        }
+
+            //Отображаем запись
+            КодБилета.Text = Convert.ToString(p1.КодБилета);
+            КодРейса.Text = Convert.ToString(p1.КодРейса);
+            Наименование.SelectedValue = db.Авиакомпании.Local.ToBindingList().Where(p => p.КодАвиакомпании == p1.КодАвиакомпании).First();
+
+
+            //здесь хз че добавлять
+
+            ////Фамилия.Text = p1.Фамилия;
+            ////НазваниеКласса.Text = p1.НазваниеКласса;
+            ////Багаж.Text = p1.Багаж;
+
+        }  
 
         private void КодРейса_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
