@@ -107,7 +107,6 @@ namespace Tickets
             db.Рейсы.Load();
             db.Билеты.Load();
             //Поличаем список из другой таблицы
-            Наименование.ItemsSource = db.Авиакомпании.Local.ToBindingList();
             КодРейса.ItemsSource = db.Рейсы.Local.ToBindingList();
             Фамилия.ItemsSource = db.Пассажиры.Local.ToBindingList();
         }
