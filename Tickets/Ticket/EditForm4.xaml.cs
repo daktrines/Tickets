@@ -23,7 +23,6 @@ namespace Tickets
         public EditForm4()
         {
             InitializeComponent();
-            КодБилета.Focus();
         }
 
         Продажа_билетов_на_самолетEntities db = ContextDB.GetContext();
