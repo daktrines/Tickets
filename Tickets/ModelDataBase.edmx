@@ -213,7 +213,6 @@
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="БилетыПроцедура" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ВозрастПассажиров" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="ГлавнаяФорма" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ГлавноеОкно" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ГородОтправления" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ГородОтправления" Type="nvarchar" Mode="In" />
@@ -256,6 +255,7 @@
         <Function Name="ПассажирыСБагажом" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
           <Parameter Name="Багаж" Type="bit" Mode="In" />
         </Function>
+        <Function Name="РейсыПроцедура" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="СамолетыПроцедура" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="СовершеннолетниеПассажиры" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="СтоимостьОпределенногоРейса" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -630,6 +630,7 @@
             <Parameter Name="МодельСамолета" Mode="In" Type="String" />
             <Parameter Name="КоличествоМест" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="РейсыПроцедура" ReturnType="Collection(Model.РейсыПроцедура_Result)" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -732,6 +733,19 @@
           <Property Type="String" Name="Наименование" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="МодельСамолета" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="КоличествоМест" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="РейсыПроцедура_Result">
+          <Property Type="Int32" Name="КодРейса" Nullable="false" />
+          <Property Type="String" Name="Наименование" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="МодельСамолета" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="ДатаОтправления" Nullable="false" />
+          <Property Type="DateTime" Name="ДатаПрибытия" Nullable="false" />
+          <Property Type="Time" Name="ВремяОтправления" Nullable="false" />
+          <Property Type="Time" Name="ВремяПрибытия" Nullable="false" />
+          <Property Type="String" Name="ДлительностьПерелета" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="СтоимостьБилета" Nullable="false" Precision="19" />
+          <Property Type="String" Name="Город_отправление" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Город_назначение" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -957,24 +971,25 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="ГлавнаяФорма" FunctionName="Хранилище Model.ГлавнаяФорма">
+          <FunctionImportMapping FunctionImportName="НовыйСамолет1" FunctionName="Хранилище Model.НовыйСамолет" />
+          <FunctionImportMapping FunctionImportName="СамолетыПроцедура" FunctionName="Хранилище Model.СамолетыПроцедура" />
+          <FunctionImportMapping FunctionImportName="РейсыПроцедура" FunctionName="Хранилище Model.РейсыПроцедура">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.ГлавнаяФорма_Result">
-                <ScalarProperty Name="КодПассажира" ColumnName="КодПассажира" />
-                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
-                <ScalarProperty Name="Имя" ColumnName="Имя" />
-                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
-                <ScalarProperty Name="СерияПаспорта" ColumnName="СерияПаспорта" />
-                <ScalarProperty Name="НомерПаспорта" ColumnName="НомерПаспорта" />
-                <ScalarProperty Name="МобильныйТелефон" ColumnName="МобильныйТелефон" />
-                <ScalarProperty Name="ДатаРождения" ColumnName="ДатаРождения" />
-                <ScalarProperty Name="НазваниеКласса" ColumnName="НазваниеКласса" />
-                <ScalarProperty Name="Багаж" ColumnName="Багаж" />
+              <ComplexTypeMapping TypeName="Model.РейсыПроцедура_Result">
+                <ScalarProperty Name="КодРейса" ColumnName="КодРейса" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="МодельСамолета" ColumnName="МодельСамолета" />
+                <ScalarProperty Name="ДатаОтправления" ColumnName="ДатаОтправления" />
+                <ScalarProperty Name="ДатаПрибытия" ColumnName="ДатаПрибытия" />
+                <ScalarProperty Name="ВремяОтправления" ColumnName="ВремяОтправления" />
+                <ScalarProperty Name="ВремяПрибытия" ColumnName="ВремяПрибытия" />
+                <ScalarProperty Name="ДлительностьПерелета" ColumnName="ДлительностьПерелета" />
+                <ScalarProperty Name="СтоимостьБилета" ColumnName="СтоимостьБилета" />
+                <ScalarProperty Name="Город_отправление" ColumnName="Город-отправление" />
+                <ScalarProperty Name="Город_назначение" ColumnName="Город-назначение" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="НовыйСамолет1" FunctionName="Хранилище Model.НовыйСамолет" />
-          <FunctionImportMapping FunctionImportName="СамолетыПроцедура" FunctionName="Хранилище Model.СамолетыПроцедура" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

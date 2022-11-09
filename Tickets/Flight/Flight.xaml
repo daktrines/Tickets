@@ -31,16 +31,16 @@
         </Menu>
         <DataGrid x:Name="DataGrid1" IsReadOnly="True" AutoGenerateColumns="False" Margin="10,169,10,10" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Код Билета" Binding="{Binding КодБилета}"/>
                 <DataGridTextColumn Header="Код Рейса" Binding="{Binding КодРейса}"/>
                 <DataGridTextColumn Header="Наименование Авиакомпании" Binding="{Binding Наименование}"/>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding Фамилия}"/>
-                <DataGridTextColumn Header="Имя" Binding="{Binding Имя}"/>
-                <DataGridTextColumn Header="Отчество" Binding="{Binding Отчество}"/>
-                <DataGridTextColumn Header="Название Класса" Binding="{Binding НазваниеКласса}"/>
-                <DataGridTextColumn Header="Багаж" Binding="{Binding Багаж}"/>
+                <DataGridTextColumn Header="Модель Самолета" Binding="{Binding МодельСамолета}"/>
                 <DataGridTextColumn Header="Дата Отправления" Binding="{Binding ДатаОтправления}"/>
+                <DataGridTextColumn Header="Дата Прибытия" Binding="{Binding ДатаПрибытия}"/>
                 <DataGridTextColumn Header="Время Отправления" Binding="{Binding ВремяОтправления}"/>
+                <DataGridTextColumn Header="Время Прибытия" Binding="{Binding ВремяПрибытия}"/>
+                <DataGridTextColumn Header="Длительность Перелёта" Binding="{Binding ДлительностьПерелета}"/>
+                <DataGridTextColumn Header="Стоимость Билетов" Binding="{Binding СтоимостьБилета}"/>
+                <DataGridTextColumn Header="Город Отправления" Binding="{Binding Город_отправление}"/>
                 <DataGridTextColumn Header="Город Назначения" Binding="{Binding Город_назначение}"/>
             </DataGrid.Columns>
         </DataGrid>

@@ -193,7 +193,13 @@
     <Compile Include="Рейсы.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>
+    <Compile Include="РейсыПроцедура_Result.cs">
+      <DependentUpon>ModelDataBase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Самолеты.cs">
+      <DependentUpon>ModelDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="СамолетыПроцедура1_Result.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="СамолетыПроцедура_Result.cs">

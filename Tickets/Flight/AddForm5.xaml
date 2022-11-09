@@ -9,28 +9,38 @@
     <DockPanel >
         <GroupBox >
             <StackPanel >
-                <Label >Код Билета</Label>
-                <TextBox x:Name="КодБилета" Margin="3" />
                 <Label >Код Рейса</Label>
-                <ComboBox x:Name="КодРейса" Margin="3" DisplayMemberPath="КодРейса" SelectionChanged="КодРейса_SelectionChanged"/>
+                <TextBox x:Name="КодРейса" Margin="3" />
                 <Label >Наименование Авиакомпании</Label>
                 <TextBox x:Name="Наименование" Margin="3" IsReadOnly="True"/>
-                <Label >Фамилия</Label>
-                <ComboBox x:Name="Фамилия" Margin="3" DisplayMemberPath="Фамилия" SelectionChanged="Фамилия_SelectionChanged"/>
-                <Label >Имя</Label>
-                <TextBox x:Name="Имя" Margin="3" IsReadOnly="True"/>
-                <Label >Отчество</Label>
-                <TextBox x:Name="Отчество" Margin="3" IsReadOnly="True"/>
-                <Label >Название Класса</Label>
-                <ComboBox x:Name="НазваниеКласса" Margin="3">
-                    <ComboBoxItem>Эконом-класс</ComboBoxItem>
-                    <ComboBoxItem>Бизнес-класс</ComboBoxItem>
-                    </ComboBox>
-                <Label >Багаж</Label>
-                <ComboBox x:Name="Багаж" Margin="3">
-                    <ComboBoxItem>Есть</ComboBoxItem>
-                    <ComboBoxItem>Нет</ComboBoxItem>
-                </ComboBox>
+                <Label >Модель Самолета</Label>
+                <ComboBox x:Name="МодельСамолета" Margin="3" DisplayMemberPath="МодельСамолета" SelectionChanged="МодельСамолета_SelectionChanged"/>
+                <Label >Дата Отправления</Label>
+                <DatePicker x:Name="ДатаОтправления" Margin="3" />
+                <Label  >Дата Прибытия</Label>
+                <DatePicker x:Name="ДатаПрибытия" Margin="3" />
+                <Label Margin="3" >Время Отправления</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label >Часы</Label>
+                    <TextBox x:Name="Часы" Width="80" />
+                <Label >Минуты</Label>
+                    <TextBox x:Name="Минуты" Width="80" />
+                </StackPanel>
+                <Label  Margin="3">Время Прибытия</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label >Часы</Label>
+                    <TextBox x:Name="Часы1" Width="80" />
+                    <Label >Минуты</Label>
+                    <TextBox x:Name="Минуты1" Width="80" />
+                </StackPanel>
+                <Label >Длительность Перелета</Label>
+                <TextBox x:Name="ДлительностьПерелета" Margin="3" />
+                <Label >Стоимость Билета</Label>
+                <TextBox x:Name="СтоимостьБилета" Margin="3" />
+                <Label >Город Отправления</Label>
+                <ComboBox x:Name="Город_отправление" Margin="3" DisplayMemberPath="Город_отправление" SelectionChanged="Город_отправление_SelectionChanged"/>
+                <Label >Город Назначения</Label>
+                <ComboBox x:Name="Город_назначение" Margin="3" DisplayMemberPath="Город_назначение" SelectionChanged="Город_назначение_SelectionChanged"/>
                 <Button Content="Добавить" IsDefault="True" Margin="3" Click="AddMain_Click"/>
                 <Button Content="Отмена" Margin="3" Click="CloseMain_Click" />
             </StackPanel>
@@ -38,17 +48,10 @@
         <GroupBox >
             <DataGrid x:Name="AddTable" IsReadOnly="True" AutoGenerateColumns="False" MinWidth=" 150">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Код Рейса" Binding="{Binding КодРейса}"/>
+                    <DataGridTextColumn Header="Код Самолёта" Binding="{Binding КодСамолета}"/>
                     <DataGridTextColumn Header="Код Авиакомпании" Binding="{Binding КодАвиакомпании}"/>
-                    <DataGridTextColumn Header="Код Самолёта" Binding="{Binding КодСамолёта}"/>
-                    <DataGridTextColumn Header="Отправление" Binding="{Binding Отправление}"/>
-                    <DataGridTextColumn Header="Прибытие" Binding="{Binding Прибытие}"/>
-                    <DataGridTextColumn Header="Дата Отправления" Binding="{Binding ДатаОтправления}"/>
-                    <DataGridTextColumn Header="Дата Прибытия" Binding="{Binding ДатаПрибытия}"/>
-                    <DataGridTextColumn Header="Время Отправления" Binding="{Binding ВремяОтправления}"/>
-                    <DataGridTextColumn Header="Время Прибытия" Binding="{Binding ВремяПрибытия}"/>
-                    <DataGridTextColumn Header="Длительность Перелета" Binding="{Binding ДлительностьПерелета}"/>
-                    <DataGridTextColumn Header="Стоимость Билета" Binding="{Binding СтоимостьБилета}"/>
+                    <DataGridTextColumn Header="Модель Самолета" Binding="{Binding МодельСамолета}"/>
+                    <DataGridTextColumn Header="Количество Мест" Binding="{Binding КоличествоМест}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>

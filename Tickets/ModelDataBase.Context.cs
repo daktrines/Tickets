@@ -339,5 +339,10 @@ namespace Tickets
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("НовыйСамолет1", кодСамолетаParameter, кодАвиакомпанииParameter, модельСамолетаParameter, количествоМестParameter);
         }
+    
+        public virtual ObjectResult<РейсыПроцедура_Result> РейсыПроцедура()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<РейсыПроцедура_Result>("РейсыПроцедура");
+        }
     }
 }
