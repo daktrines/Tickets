@@ -37,14 +37,14 @@ namespace Tickets
             if (МодельСамолета.Text.Length == 0) errors.AppendLine("Введите модель самолета");
             if (ДатаОтправления.Text.Length == 0) errors.AppendLine("Введите дату отправления");
             if (ДатаПрибытия.Text.Length == 0) errors.AppendLine("Введите дату прибытия");
-            if (Часы.Text.Length == 0) errors.AppendLine("Введите время отправления");
-            if (Минуты.Text.Length == 0) errors.AppendLine("Введите время прибытия");
-            if (Часы1.Text.Length == 0) errors.AppendLine("Введите время отправления");
-            if (Минуты1.Text.Length == 0) errors.AppendLine("Введите время прибытия");
+            if (Часы.Text.Length == 0) errors.AppendLine("Введите время в часах");
+            if (Минуты.Text.Length == 0) errors.AppendLine("Введите время в минутах");
+            if (Часы1.Text.Length == 0) errors.AppendLine("Введите время в часах");
+            if (Минуты1.Text.Length == 0) errors.AppendLine("Введите время в минутах");
             if (ДлительностьПерелета.Text.Length == 0) errors.AppendLine("Введите длительность перелета");
             if (СтоимостьБилета.Text.Length == 0) errors.AppendLine("Введите стоимость билета");
-            if (Город_отправление.Text.Length == 0) errors.AppendLine("Введите дату отправления");
-            if (Город_назначение.Text.Length == 0) errors.AppendLine("Введите дату назначение");
+            if (Город_отправление.Text.Length == 0) errors.AppendLine("Введите город отправления");
+            if (Город_назначение.Text.Length == 0) errors.AppendLine("Введите город назначения");
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
