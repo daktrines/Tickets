@@ -100,8 +100,7 @@ namespace Tickets
             db.Аэропорты.Load();
             db.Самолеты.Load();
             //Поличаем список из другой таблицы
-            МодельСамолета.ItemsSource = db.Самолеты.Local.ToBindingList();
-            Наименование.ItemsSource = db.Авиакомпании.Local.ToBindingList();
+            МодельСамолета.ItemsSource = db.Самолеты.Local.ToBindingList();            
             Город_отправление.ItemsSource = db.Аэропорты.Local.ToBindingList();
             Город_назначение.ItemsSource = db.Аэропорты.Local.ToBindingList();
         }
@@ -110,7 +109,9 @@ namespace Tickets
         {
             try
             {
-                AddTable.ItemsSource = db.Самолеты.Local.ToBindingList().Where(p => p.КодСамолета == ((Самолеты)МодельСамолета.SelectedValue).КодСамолета);
+                var airplanes = db.Самолеты.Local.ToBindingList().Where(p => p.КодСамолета == ((Самолеты)МодельСамолета.SelectedValue).КодСамолета);
+                AddTable.ItemsSource = airplanes;
+                Наименование.Text = db.Авиакомпании.Local.ToBindingList().Where(p => p.КодАвиакомпании == airplanes.First().КодАвиакомпании).First().Наименование;
             }
             catch (Exception ex)//Если что пойдет не так - при точке останова глянуть значение ex
             {

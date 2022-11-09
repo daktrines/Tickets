@@ -10,11 +10,11 @@
         <GroupBox >
             <StackPanel >
                 <Label >Код Рейса</Label>
-                <TextBox x:Name="КодРейса" Margin="3" />
-                <Label >Наименование Авиакомпании</Label>
-                <ComboBox x:Name="Наименование" Margin="3" DisplayMemberPath="Наименование"/>
+                <TextBox x:Name="КодРейса" Margin="3"/>
                 <Label >Модель Самолета</Label>
                 <ComboBox x:Name="МодельСамолета" Margin="3" DisplayMemberPath="МодельСамолета" SelectionChanged="МодельСамолета_SelectionChanged"/>
+                <Label >Наименование Авиакомпании</Label>
+                <TextBox x:Name="Наименование" Margin="3" IsReadOnly="True"/>
                 <Label >Дата Отправления</Label>
                 <DatePicker x:Name="ДатаОтправления" Margin="3" />
                 <Label  >Дата Прибытия</Label>
