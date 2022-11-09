@@ -42,7 +42,8 @@ namespace Tickets
 
         private void Рейсы_Click(object sender, RoutedEventArgs e)
         {
-           
+            Flight add = new Flight();
+            add.ShowDialog();
         }
 
         private void Билеты_Click(object sender, RoutedEventArgs e)

@@ -64,6 +64,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Flight\AddForm5.xaml.cs">
+      <DependentUpon>AddForm5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Flight\EditForm5.xaml.cs">
+      <DependentUpon>EditForm5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Flight\FindWin5.xaml.cs">
+      <DependentUpon>FindWin5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Flight\Flight.xaml.cs">
+      <DependentUpon>Flight.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ticket\EditForm4.xaml.cs">
       <DependentUpon>EditForm4.xaml</DependentUpon>
     </Compile>
@@ -190,6 +202,22 @@
     <Compile Include="СтоимостьОпределенногоРейса_Result.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>
+    <Page Include="Flight\AddForm5.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Flight\EditForm5.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Flight\FindWin5.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Flight\Flight.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ticket\EditForm4.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -108,19 +108,11 @@ namespace Tickets
             DataGrid1.ItemsSource = db.СамолетыПроцедура();
         }
 
-        private void Самолеты_Click(object sender, RoutedEventArgs e)
-        {
-            //Airplane add = new Airplane();
-            //add.ShowDialog();
-        }
 
-        private void Рейсы_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         private void Билеты_Click(object sender, RoutedEventArgs e)
         {
-
+            Ticket add = new Ticket();
+            add.ShowDialog();
         }
 
         private void Авиакомпании_Click(object sender, RoutedEventArgs e)
@@ -155,6 +147,11 @@ namespace Tickets
         private void Аэропорты_Click(object sender, RoutedEventArgs e)
         {
             Airport add = new Airport();
+            add.ShowDialog();
+        }
+        private void Рейсы_Click(object sender, RoutedEventArgs e)
+        {
+            Flight add = new Flight();
             add.ShowDialog();
         }
     }

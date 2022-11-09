@@ -18,9 +18,9 @@ namespace Tickets
     /// <summary>
     /// Логика взаимодействия для Passenger.xaml
     /// </summary>
-    public partial class Ticket : Window
+    public partial class Flight : Window
     {
-        public Ticket()
+        public Flight()
         {
             InitializeComponent();
         }
@@ -40,7 +40,7 @@ namespace Tickets
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             ////DataGrid1.ItemsSource = новыйПассажир 
-            AddForm4 add = new AddForm4();
+            AddForm5 add = new AddForm5();
             add.ShowDialog();
             DataGrid1.Focus();
             DataGrid1.ItemsSource = db.БилетыПроцедура();
@@ -59,7 +59,7 @@ namespace Tickets
                 //Получаем ключ текущей записи
                 ContextDB.ID = ((БилетыПроцедура_Result)DataGrid1.SelectedValue).КодБилета;
                 //Открываем форму Редактировать
-                EditForm4 edit = new EditForm4();
+                EditForm5 edit = new EditForm5();
                 edit.ShowDialog();
                 //Обновляем таблицу
                 DataGrid1.ItemsSource = db.БилетыПроцедура();
@@ -97,7 +97,7 @@ namespace Tickets
         }
         private void Find_Click(object sender, RoutedEventArgs e)
         {
-            FindWin4 find = new FindWin4();
+            FindWin5 find = new FindWin5();
             if (find.ShowDialog() == true) DataGrid1.ItemsSource = find.q;
         }
 
@@ -116,6 +116,13 @@ namespace Tickets
         private void Самолеты_Click(object sender, RoutedEventArgs e)
         {
             Airplane add = new Airplane();
+            add.ShowDialog();
+        }
+
+
+        private void Билеты_Click(object sender, RoutedEventArgs e)
+        {
+            Ticket add = new Ticket();
             add.ShowDialog();
         }
 
@@ -151,12 +158,6 @@ namespace Tickets
         private void Аэропорты_Click(object sender, RoutedEventArgs e)
         {
             Airport add = new Airport();
-            add.ShowDialog();
-        }
-
-        private void Рейсы_Click(object sender, RoutedEventArgs e)
-        {
-            Flight add = new Flight();
             add.ShowDialog();
         }
     }
