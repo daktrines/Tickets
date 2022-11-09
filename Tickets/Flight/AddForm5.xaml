@@ -24,7 +24,7 @@
                     <Label >Часы</Label>
                     <TextBox x:Name="Часы" Width="80" />
                 <Label >Минуты</Label>
-                    <TextBox x:Name="Минуты" Width="80" />
+                    <TextBox x:Name="Минуты" Width="80" Margin="0,0,3,0" />
                 </StackPanel>
                 <Label  Margin="3">Время Прибытия</Label>
                 <StackPanel Orientation="Horizontal">
