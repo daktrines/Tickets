@@ -362,9 +362,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\background.jpg" />
-    <Resource Include="images\secbacl.jpg" />
     <Resource Include="images\secbac.jpg" />
+    <Resource Include="images\mainbac.jpg" />
     <Content Include="ModelDataBase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelDataBase.Context.cs</LastGenOutput>
