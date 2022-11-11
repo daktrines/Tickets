@@ -22,7 +22,7 @@ namespace Tickets
     {
 
         Продажа_билетов_на_самолетEntities db = ContextDB.GetContext();
-        public IEnumerable<СамолетыПроцедура_Result> q;
+        public IEnumerable<РейсыПроцедура_Result> q;
         public FindWin5()
         {
             InitializeComponent();
@@ -31,7 +31,7 @@ namespace Tickets
         private void FindForm_Click(object sender, RoutedEventArgs e)
         {
             //Получаем поиск записи
-            q = db.СамолетыПроцедура().ToList().Where(p => p.МодельСамолета.Contains(Find.Text));
+            q = db.РейсыПроцедура().ToList().Where(p => p.МодельСамолета.Contains(Find.Text));
             DialogResult = true;
             Close();
         }
