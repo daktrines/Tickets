@@ -22,42 +22,18 @@ namespace Tickets
     {
 
         Продажа_билетов_на_самолетEntities db = ContextDB.GetContext();
-        public object q;
-        public FindWin5(DataGrid curTable)
+        public IEnumerable<РейсыПроцедура_Result> q;
+        public FindWin5()
         {
             InitializeComponent();
-            CurTable = curTable;
             Find.Focus();
         }
-        DataGrid CurTable;
         private void FindForm_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                for (int i = 0; i < CurTable.Items.Count; i++)
-                {
-                    var row = (РейсыПроцедура_Result)CurTable.Items[i];
-                    string findContent = row.МодельСамолета;
-                    try
-                    {
-                        if (findContent != null && findContent.Contains(Find.Text))
-                        {
-                            q = CurTable.Items[i];
-                            break;
-                        }
-                    }
-                    catch
-                    {
-
-                    }
-                }
-                DialogResult = true;
-                Close();
-            }
-            catch (Exception ex)
-            {
-
-            }
+            //Получаем поиск записи
+            q = db.РейсыПроцедура().ToList().Where(p => p.Город_назначение.Contains(Find.Text));
+            DialogResult = true;
+            Close();
         }
     }
 }

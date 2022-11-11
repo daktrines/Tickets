@@ -95,16 +95,8 @@ namespace Tickets
         }
         private void Find_Click(object sender, RoutedEventArgs e)
         {
-            FindWin5 find = new FindWin5(DataGrid1);
-            if (find.ShowDialog() == true)
-            {
-                //DataGrid1.SelectedIndex = find.q;
-                if (find.q != null)
-                {
-                    DataGrid1.SelectedItem = find.q;
-                    DataGrid1.ScrollIntoView(find.q);
-                }
-            }
+            FindWin5 find = new FindWin5();
+            if (find.ShowDialog() == true) DataGrid1.ItemsSource = find.q;
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
