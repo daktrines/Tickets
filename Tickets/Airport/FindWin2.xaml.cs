@@ -22,7 +22,7 @@ namespace Tickets
     {
 
         Продажа_билетов_на_самолетEntities db = ContextDB.GetContext();
-        public IEnumerable<Аэропорты> q;
+        public int q = -1;//Код записи аэропорта
         public FindWin2()
         {
             InitializeComponent();
@@ -31,9 +31,16 @@ namespace Tickets
         private void FindForm_Click(object sender, RoutedEventArgs e)
         {
             //Получаем поиск записи
-            q = db.Аэропорты.ToList().Where(p => p.Город == Find.Text);
-            DialogResult = true;
-            Close();
+            try
+            {
+                q = db.Аэропорты.ToList().Where(p => p.Наименование.Contains(Find.Text)).First().КодАэропорта;
+                DialogResult = true;
+                Close();
+            }
+            catch 
+            {
+                MessageBox.Show("Нет таких аэропортов!", "Поиск аэропорта", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

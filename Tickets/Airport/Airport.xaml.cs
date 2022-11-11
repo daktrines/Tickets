@@ -97,7 +97,17 @@ namespace Tickets
         private void Find_Click(object sender, RoutedEventArgs e)
         {
             FindWin2 find = new FindWin2();
-            if (find.ShowDialog() == true) DataGrid1.ItemsSource = find.q;
+            if (find.ShowDialog() == true)
+            {
+                foreach (var item in DataGrid1.Items)
+                {
+                    if (((Аэропорты)item).КодАэропорта == find.q)
+                    {
+                        DataGrid1.SelectedItem = item;
+                        break;
+                    }
+                }
+            }
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
