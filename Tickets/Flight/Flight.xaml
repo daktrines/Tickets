@@ -29,7 +29,7 @@
             <MenuItem Header="О программе" Click="Information_Click" />
             <MenuItem  Header="Выход" Click="Exit_Click" Height="23" />
         </Menu>
-        <DataGrid x:Name="DataGrid1" IsReadOnly="True" AutoGenerateColumns="False" Margin="10,169,10,10" >
+        <DataGrid x:Name="DataGrid1" IsReadOnly="True" AutoGenerateColumns="False" Margin="10,169,10,10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Код Рейса" Binding="{Binding КодРейса}"/>
                 <DataGridTextColumn Header="Наименование Авиакомпании" Binding="{Binding Наименование}"/>
