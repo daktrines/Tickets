@@ -7,8 +7,8 @@
         mc:Ignorable="d"
        Title="FindWin" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <StackPanel>
-        <Label Height="27" >Поиск по имени аэропорта</Label>
-        <TextBox x:Name="Find" Margin="3" Height="24" Width="143" />
+        <Label Height="27" >Поиск по наименованию аэропорта</Label>
+        <TextBox x:Name="Find" Margin="3" Height="24"  />
         <Button x:Name="FindForm" IsDefault="True" Content="Найти" Margin="3" Click="FindForm_Click" Height="26"/>
     </StackPanel>
 </Window>

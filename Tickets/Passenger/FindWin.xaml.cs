@@ -21,7 +21,7 @@ namespace Tickets
     {
 
         Продажа_билетов_на_самолетEntities db = ContextDB.GetContext();
-        public IEnumerable<Пассажиры> q;
+        public int q = -1;//Код записи пассажира
         public FindWin()
         {
             InitializeComponent();
@@ -30,9 +30,16 @@ namespace Tickets
         private void FindForm_Click(object sender, RoutedEventArgs e)
         {
             //Получаем поиск записи
-            q = db.Пассажиры.ToList().Where(p => p.Фамилия == Find.Text);
-            DialogResult = true;
-            Close();
+            try
+            {
+                q = db.Пассажиры.ToList().Where(p => p.Фамилия.Contains(Find.Text)).First().КодПассажира;
+                DialogResult = true;
+                Close();
+            }
+            catch
+            {
+                MessageBox.Show("Нет таких пассажиров!", "Поиск пассажира", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }
