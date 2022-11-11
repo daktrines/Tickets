@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         Title="Passenger" Height="560" Loaded="Window_Loaded" Width="800" SizeToContent="WidthAndHeight"  ResizeMode="NoResize" WindowStartupLocation="CenterScreen" >
     <Grid>
-
-        <Menu  Grid.Row="0" Background="White" >
+        <Menu  Grid.Row="0">
+            <Menu.Background>
+                <ImageBrush ImageSource="\images\background.jpg" Opacity="0.9"/>
+            </Menu.Background>
             <MenuItem Header="Формы" >
                 <MenuItem  Header="Добавить запись" Click="Add_Click" />
                 <MenuItem   Header="Редактировать запись" Click="Edit_Click"/>
