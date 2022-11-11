@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tickets"
         mc:Ignorable="d"
-        Title="Tickets" Height="701" Width="1198"   ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Tickets" Height="701" Width="1198" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         
     </Window.Resources>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="\images\background.jpg" Opacity="0.9"/>
+            <ImageBrush ImageSource="\images\background.jpg" Opacity="0.75"/>
         </Grid.Background>
         <Button x:Name="Pessenger" Content="Регистрация пассажира" HorizontalAlignment="Left" Margin="182,171,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Height="94" Click="Pessenger_Click"/>
         <Button Content="Покупка билета" HorizontalAlignment="Left" Margin="667,171,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Height="94" Click="Билеты_Click"/>
