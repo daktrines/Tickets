@@ -47,10 +47,6 @@
                 <DataGridTextColumn Header="Город Назначения" Binding="{Binding Город_назначение}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Рейсы" HorizontalAlignment="Center" Margin="0,37,0,0" VerticalAlignment="Top" FontSize="72" HorizontalContentAlignment="Center" Width="284" Height="127">
-            <Label.Background>
-                <SolidColorBrush Color="White" Opacity="0.1"/>
-            </Label.Background>
-        </Label>
+        <Label Content="Рейсы" HorizontalAlignment="Center" Margin="0,37,0,0" VerticalAlignment="Top" FontSize="72" HorizontalContentAlignment="Center" Width="592" Height="110"/>
     </Grid>
 </Window>
