@@ -9,7 +9,12 @@
     <Grid>
         <Menu  Grid.Row="0">
             <Menu.Background>
-                <ImageBrush ImageSource="\images\secbac.jpg" Opacity="0.9"/>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF8E9DED" Offset="1"/>
+                    <GradientStop Color="#FF6675C3" Offset="0.305"/>
+                    <GradientStop Color="#FF5361A9" Offset="0"/>
+                    <GradientStop Color="#FF5361A9" Offset="0.159"/>
+                </LinearGradientBrush>
             </Menu.Background>
             <MenuItem Header="Формы" >
                 <MenuItem  Header="Добавить запись" Click="Add_Click" />

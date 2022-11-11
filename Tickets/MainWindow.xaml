@@ -7,15 +7,14 @@
         mc:Ignorable="d"
         Title="Tickets" Height="701" Width="1198" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="Black"/>
-            <GradientStop Color="White" Offset="1"/>
-        </LinearGradientBrush>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF8E9DED" Offset="1"/>
+                <GradientStop Color="#FF6675C3" Offset="0.305"/>
+                <GradientStop Color="#FF5361A9" Offset="0"/>
+                <GradientStop Color="#FF5361A9" Offset="0.159"/>
+            </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="\images\Безымянный1.png" Opacity="0.75"/>
-        </Grid.Background>
         <Button x:Name="Pessenger" Content="Регистрация пассажира" HorizontalAlignment="Left" Margin="182,171,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Height="94" Click="Pessenger_Click">
             <Button.Background>
                 <ImageBrush/>

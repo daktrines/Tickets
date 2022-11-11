@@ -6,9 +6,16 @@
         xmlns:local="clr-namespace:Tickets"
         mc:Ignorable="d"
         Title="Airline" Height="560" Loaded="Window_Loaded" Width="593" SizeToContent="WidthAndHeight"  ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  >
-   
     <Grid>
         <Menu>
+            <Menu.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF8E9DED" Offset="1"/>
+                    <GradientStop Color="#FF6675C3" Offset="0.305"/>
+                    <GradientStop Color="#FF5361A9" Offset="0"/>
+                    <GradientStop Color="#FF5361A9" Offset="0.159"/>
+                </LinearGradientBrush>
+            </Menu.Background>
             <MenuItem Header="Формы" >
                 <MenuItem  Header="Добавить запись" Click="Add_Click" />
                 <MenuItem   Header="Редактировать запись" Click="Edit_Click"/>
