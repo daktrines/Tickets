@@ -4,6 +4,15 @@
              xmlns:local="clr-namespace:Tickets"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+            <Style TargetType="DataGridCell">
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                    <Trigger.Setters>
+                        <Setter Property="Background" Value="Black" />
+                        <Setter Property="Foreground" Value="White"/>
+                    </Trigger.Setters>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
     </Application.Resources>
 </Application>
