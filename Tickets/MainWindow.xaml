@@ -6,9 +6,6 @@
         xmlns:local="clr-namespace:Tickets"
         mc:Ignorable="d"
         Title="Tickets" Height="701" Width="1198" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        
-    </Window.Resources>
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="\images\mainbac.jpg" Opacity="0.75"/>
