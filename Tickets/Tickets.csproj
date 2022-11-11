@@ -364,6 +364,7 @@
   <ItemGroup>
     <Resource Include="images\secbac.jpg" />
     <Resource Include="images\mainbac.jpg" />
+    <Resource Include="images\Безымянный1.png" />
     <Content Include="ModelDataBase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelDataBase.Context.cs</LastGenOutput>

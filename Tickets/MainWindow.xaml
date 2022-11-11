@@ -6,16 +6,46 @@
         xmlns:local="clr-namespace:Tickets"
         mc:Ignorable="d"
         Title="Tickets" Height="701" Width="1198" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black"/>
+            <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="\images\mainbac.jpg" Opacity="0.75"/>
+            <ImageBrush ImageSource="\images\Безымянный1.png" Opacity="0.75"/>
         </Grid.Background>
-        <Button x:Name="Pessenger" Content="Регистрация пассажира" HorizontalAlignment="Left" Margin="182,171,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Height="94" Click="Pessenger_Click"/>
-        <Button Content="Покупка билета" HorizontalAlignment="Left" Margin="667,171,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Height="94" Click="Билеты_Click"/>
-        <Button Content="Выбор рейса" HorizontalAlignment="Left" Margin="182,337,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Height="94" Click="Рейсы_Click"/>
-        <Button Content="Аэропорты" HorizontalAlignment="Left" Margin="667,337,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Height="94" Click="Аэропорты_Click"/>
-        <Button Content="Самолеты" HorizontalAlignment="Left" Margin="182,498,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Click="Самолеты_Click" Height="94"/>
-        <Button Content="Авиакомпании" HorizontalAlignment="Left" Margin="667,498,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Click="Авиакомпании_Click" Height="94"/>
+        <Button x:Name="Pessenger" Content="Регистрация пассажира" HorizontalAlignment="Left" Margin="182,171,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Height="94" Click="Pessenger_Click">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
+        <Button Content="Покупка билета" HorizontalAlignment="Left" Margin="667,171,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Height="94" Click="Билеты_Click">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
+        <Button Content="Выбор рейса" HorizontalAlignment="Left" Margin="182,337,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Height="94" Click="Рейсы_Click">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
+        <Button Content="Аэропорты" HorizontalAlignment="Left" Margin="667,337,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Height="94" Click="Аэропорты_Click">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
+        <Button Content="Самолеты" HorizontalAlignment="Left" Margin="182,498,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Click="Самолеты_Click" Height="94">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
+        <Button Content="Авиакомпании" HorizontalAlignment="Left" Margin="667,498,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Click="Авиакомпании_Click" Height="94">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
         <Label Content="Продажа билетов на самолет" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontSize="72" Height="129" Width="1198">
         </Label>
     </Grid>
