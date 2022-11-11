@@ -31,7 +31,7 @@ namespace Tickets
         private void FindForm_Click(object sender, RoutedEventArgs e)
         {
             //Получаем поиск записи
-            q = db.СамолетыПроцедура().ToList().Where(p => p.МодельСамолета == Find.Text);
+            q = db.СамолетыПроцедура().ToList().Where(p => p.МодельСамолета.Contains(Find.Text));
             DialogResult = true;
             Close();
         }
