@@ -85,7 +85,7 @@
                 <ImageBrush/>
             </Button.Background>
         </Button>
-        <Button Content="Покупка билета" HorizontalAlignment="Left" Margin="682,171,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Height="80" Click="Билеты_Click">
+        <Button Content="Покупка билета" HorizontalAlignment="Left" Margin="646,171,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Height="80" Click="Билеты_Click">
             <Button.Background>
                 <ImageBrush/>
             </Button.Background>
@@ -95,7 +95,7 @@
                 <ImageBrush/>
             </Button.Background>
         </Button>
-        <Button Content="Аэропорты" HorizontalAlignment="Left" Margin="682,337,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Height="80" Click="Аэропорты_Click">
+        <Button Content="Аэропорты" HorizontalAlignment="Left" Margin="646,337,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Height="80" Click="Аэропорты_Click">
             <Button.Background>
                 <ImageBrush/>
             </Button.Background>
@@ -105,7 +105,7 @@
                 <ImageBrush/>
             </Button.Background>
         </Button>
-        <Button Content="Авиакомпании" HorizontalAlignment="Left" Margin="682,498,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Click="Авиакомпании_Click" Height="80">
+        <Button Content="Авиакомпании" HorizontalAlignment="Left" Margin="646,498,0,0" VerticalAlignment="Top" FontSize="22" Width="335" Click="Авиакомпании_Click" Height="80">
             <Button.Background>
                 <ImageBrush/>
             </Button.Background>
