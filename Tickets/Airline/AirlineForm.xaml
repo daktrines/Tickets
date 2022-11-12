@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tickets"
         mc:Ignorable="d"
-        Title="Airline" Height="560" Loaded="Window_Loaded" Width="593" SizeToContent="WidthAndHeight"  ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  >
+        Title="Airline" Height="560" Loaded="Window_Loaded" Width="593" SizeToContent="WidthAndHeight"  WindowStartupLocation="CenterScreen"  >
     <Grid>
-        <Menu>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="155*"/>
+            <RowDefinition Height="389*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.RowSpan="2">
             <Menu.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF8E9DED" Offset="1"/>
@@ -37,7 +41,7 @@
             <MenuItem Header="О программе" Click="Information_Click"/>
             <MenuItem  Header="Выход" Click="Exit_Click" Height="23" />
         </Menu>
-        <DataGrid x:Name="DataGrid1" IsReadOnly="True" AutoGenerateColumns="False" Margin="10,169,10,10" >
+        <DataGrid x:Name="DataGrid1" IsReadOnly="True" AutoGenerateColumns="False" Margin="10,14,10,10" Grid.Row="1" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Код Авиакомпании" Binding="{Binding КодАвиакомпании}"/>
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Наименование}"/>
@@ -45,6 +49,6 @@
                 <DataGridTextColumn Header="Электронный Адрес" Binding="{Binding ЭлектронныйАдрес}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Авиакомпании" HorizontalAlignment="Center" Margin="0,37,0,0" VerticalAlignment="Top" FontSize="72" HorizontalContentAlignment="Center" Width="574" Height="127"/>
+        <Label Content="Авиакомпании" HorizontalAlignment="Center" Margin="0,37,0,0" VerticalAlignment="Top" FontSize="72" HorizontalContentAlignment="Center" Width="574" Height="104"/>
     </Grid>
 </Window>
