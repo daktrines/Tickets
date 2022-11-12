@@ -20,6 +20,11 @@ namespace Tickets.Ticket
     /// </summary>
     public partial class ViewForm4 : Window
     {
+        public ViewForm4()
+        {
+            InitializeComponent();
+        }
+
         Продажа_билетов_на_самолетEntities db = ContextDB.GetContext();
         private void Find_Click(object sender, RoutedEventArgs e)
         {
