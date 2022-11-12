@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Tickets.Airport;
 
 namespace Tickets
 {
@@ -140,7 +141,8 @@ namespace Tickets
 
         private void View_Click(object sender, RoutedEventArgs e)
         {
-
+            ViewForm2 view = new ViewForm2();
+            view.ShowDialog();
         }
 
 
