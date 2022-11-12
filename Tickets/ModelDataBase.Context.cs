@@ -344,5 +344,14 @@ namespace Tickets
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<РейсыПроцедура_Result>("РейсыПроцедура");
         }
+    
+        public virtual ObjectResult<АэропортПрибытиеРейса_Result> АэропортПрибытиеРейса(Nullable<int> raceId)
+        {
+            var raceIdParameter = raceId.HasValue ?
+                new ObjectParameter("RaceId", raceId) :
+                new ObjectParameter("RaceId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<АэропортПрибытиеРейса_Result>("АэропортПрибытиеРейса", raceIdParameter);
+        }
     }
 }

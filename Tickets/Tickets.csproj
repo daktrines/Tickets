@@ -154,6 +154,9 @@
     <Compile Include="Авиакомпании.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>
+    <Compile Include="АэропортПрибытиеРейса_Result.cs">
+      <DependentUpon>ModelDataBase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Аэропорты.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>

@@ -211,6 +211,9 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="АэропортПрибытиеРейса" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RaceId" Type="int" Mode="In" />
+        </Function>
         <Function Name="БилетыПроцедура" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ВозрастПассажиров" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ГлавноеОкно" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -631,6 +634,9 @@
             <Parameter Name="КоличествоМест" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="РейсыПроцедура" ReturnType="Collection(Model.РейсыПроцедура_Result)" />
+          <FunctionImport Name="АэропортПрибытиеРейса" ReturnType="Collection(Model.АэропортПрибытиеРейса_Result)">
+            <Parameter Name="RaceId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -746,6 +752,10 @@
           <Property Type="Decimal" Name="СтоимостьБилета" Nullable="false" Precision="19" />
           <Property Type="String" Name="Город_отправление" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Город_назначение" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="АэропортПрибытиеРейса_Result">
+          <Property Type="String" Name="Наименование" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Город" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -987,6 +997,14 @@
                 <ScalarProperty Name="СтоимостьБилета" ColumnName="СтоимостьБилета" />
                 <ScalarProperty Name="Город_отправление" ColumnName="Город-отправление" />
                 <ScalarProperty Name="Город_назначение" ColumnName="Город-назначение" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="АэропортПрибытиеРейса" FunctionName="Хранилище Model.АэропортПрибытиеРейса">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.АэропортПрибытиеРейса_Result">
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Город" ColumnName="Город" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
