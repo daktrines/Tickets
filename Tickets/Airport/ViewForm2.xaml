@@ -9,8 +9,8 @@
     <DockPanel >
         <GroupBox Header="Запросы">
             <StackPanel>
-                <RadioButton x:Name="sql1" Content="Наименование и город аэропорта"  GroupName="1" Margin="3"/>
-                <Label >Код аэропорта</Label>
+                <RadioButton x:Name="sql1" Content="Наименование и город аэропорта по рейсу"  GroupName="1" Margin="3"/>
+                <Label >Номер рейса</Label>
                 <TextBox x:Name="ID" Margin="3"/>
                 <Button Content="Определить" x:Name="Find" Margin="3" Click="Find_Click"/>
             </StackPanel>

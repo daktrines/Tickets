@@ -9,7 +9,14 @@
     <DockPanel >
         <GroupBox Header="Запросы">
             <StackPanel>
-                <RadioButton x:Name="sql1" Content="Наименование авиакомпании и модель самолета"  GroupName="1" Margin="3"/>
+                <RadioButton x:Name="sql1" Content="Наименование авиакомпании и модель самолета" IsChecked="True"  GroupName="1" Margin="3"/>
+                <Label>Фильтр</Label>
+                <ComboBox x:Name="FindParam" Margin="3">
+                    <ComboBoxItem IsSelected="True">Отсутствует</ComboBoxItem>
+                    <ComboBoxItem>По имени авиакомпании</ComboBoxItem>
+                    <ComboBoxItem>По модели самолета</ComboBoxItem>
+                </ComboBox>
+                <TextBox x:Name="ID" Margin="3"/>
                 <Button Content="Определить" x:Name="Find" Margin="3" Click="Find_Click"/>
             </StackPanel>
         </GroupBox>

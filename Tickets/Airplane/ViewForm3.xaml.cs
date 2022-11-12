@@ -31,7 +31,12 @@ namespace Tickets.Airplane
             {
                 if (sql1.IsChecked == true)
                 {
-                    Viewtable.ItemsSource = db.МодельСамолета();
+                    if (FindParam.SelectedIndex == 0)
+                        Viewtable.ItemsSource = db.МодельСамолета();
+                    if (FindParam.SelectedIndex == 1)
+                        Viewtable.ItemsSource = db.МодельСамолета().ToList().Where(p => p.Наименование.Contains(ID.Text));
+                    if (FindParam.SelectedIndex == 2)
+                        Viewtable.ItemsSource = db.МодельСамолета().ToList().Where(p => p.МодельСамолета.Contains(ID.Text));
                 }
             }
             catch (Exception ex)
