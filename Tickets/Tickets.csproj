@@ -76,6 +76,9 @@
     <Compile Include="Flight\Flight.xaml.cs">
       <DependentUpon>Flight.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Passenger\ViewForm.xaml.cs">
+      <DependentUpon>ViewForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ticket\EditForm4.xaml.cs">
       <DependentUpon>EditForm4.xaml</DependentUpon>
     </Compile>
@@ -226,6 +229,10 @@
     <Page Include="Flight\Flight.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Passenger\ViewForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ticket\EditForm4.xaml">
       <Generator>MSBuild:Compile</Generator>
