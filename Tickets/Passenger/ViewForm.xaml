@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tickets.Passenger"
         mc:Ignorable="d"
-        Title="ViewForm" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" >
+        Title="ViewForm" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <DockPanel >
         <GroupBox Header="Запросы">
             <StackPanel>
                 <RadioButton x:Name="sql1" Content="Возраст пассажиров" IsChecked="True" GroupName="1" Margin="3"/>
                 <RadioButton x:Name="sql2" Content="Город отправления" GroupName="1" Margin="3"/>
-                <Label >Параметр</Label>
-                <TextBox x:Name="ID" Margin="3"/>
+                <Label >Имя город-отправление</Label>
+                <TextBox x:Name="TownName" Margin="3"/>
                 <Button Content="Определить" x:Name="Find" Margin="3" Click="Find_Click"/>
             </StackPanel>
         </GroupBox>
