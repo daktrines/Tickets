@@ -39,16 +39,16 @@
             <DataGrid x:Name="AddTable" IsReadOnly="True" AutoGenerateColumns="False" MinWidth=" 150">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Код Рейса" Binding="{Binding КодРейса}"/>
-                    <DataGridTextColumn Header="Код Авиакомпании" Binding="{Binding КодАвиакомпании}"/>
-                    <DataGridTextColumn Header="Код Самолёта" Binding="{Binding КодСамолёта}"/>
-                    <DataGridTextColumn Header="Отправление" Binding="{Binding Отправление}"/>
-                    <DataGridTextColumn Header="Прибытие" Binding="{Binding Прибытие}"/>
+                    <DataGridTextColumn Header="Наименование Авиакомпании" Binding="{Binding Наименование}"/>
+                    <DataGridTextColumn Header="Модель Самолета" Binding="{Binding МодельСамолета}"/>
+                    <DataGridTextColumn Header="Город Отправления" Binding="{Binding Город_отправление}"/>
+                    <DataGridTextColumn Header="Город Назначения" Binding="{Binding Город_назначение}"/>
                     <DataGridTextColumn Header="Дата Отправления" Binding="{Binding ДатаОтправления}"/>
                     <DataGridTextColumn Header="Дата Прибытия" Binding="{Binding ДатаПрибытия}"/>
                     <DataGridTextColumn Header="Время Отправления" Binding="{Binding ВремяОтправления}"/>
                     <DataGridTextColumn Header="Время Прибытия" Binding="{Binding ВремяПрибытия}"/>
-                    <DataGridTextColumn Header="Длительность Перелета" Binding="{Binding ДлительностьПерелета}"/>
-                    <DataGridTextColumn Header="Стоимость Билета" Binding="{Binding СтоимостьБилета}"/>
+                    <DataGridTextColumn Header="Длительность Перелёта" Binding="{Binding ДлительностьПерелета}"/>
+                    <DataGridTextColumn Header="Стоимость Билетов" Binding="{Binding СтоимостьБилета}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>

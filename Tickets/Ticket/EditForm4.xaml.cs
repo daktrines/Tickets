@@ -122,8 +122,9 @@ namespace Tickets
         {
             try
             {
-                AddTable.ItemsSource = db.Рейсы.Local.ToBindingList().Where(p => p.КодРейса == ((Рейсы)КодРейса.SelectedValue).КодРейса);
-                Наименование.Text = db.Авиакомпании.Local.ToBindingList().Where(p => p.КодАвиакомпании == ((Рейсы)КодРейса.SelectedValue).КодАвиакомпании).First().Наименование;
+                var q = db.РейсыПроцедура().ToList().Where(p => p.КодРейса == ((Рейсы)КодРейса.SelectedValue).КодРейса);
+                AddTable.ItemsSource = q;
+                Наименование.Text = q.First().Наименование;
             }
             catch (Exception ex)//Если что пойдет не так - при точке останова глянуть значение ex
             {
