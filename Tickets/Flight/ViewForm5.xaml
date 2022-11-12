@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tickets.Passenger"
         mc:Ignorable="d"
-        Title="ViewForm" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" >
+        Title="ViewForm" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <DockPanel >
         <GroupBox Header="Запросы">
             <StackPanel>

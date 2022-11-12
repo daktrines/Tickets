@@ -53,10 +53,5 @@ namespace Tickets.Passenger
             }
             catch { }
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            db.Пассажиры.Load();
-        }
     }
 }
