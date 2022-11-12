@@ -64,6 +64,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Airline\ViewForm1.xaml.cs">
+      <DependentUpon>ViewForm1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Airplane\ViewForm3.xaml.cs">
+      <DependentUpon>ViewForm3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Airport\ViewForm2.xaml.cs">
+      <DependentUpon>ViewForm2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Flight\EditForm5.xaml.cs">
       <DependentUpon>EditForm5.xaml</DependentUpon>
     </Compile>
@@ -73,8 +82,11 @@
     <Compile Include="Flight\FindWin5.xaml.cs">
       <DependentUpon>FindWin5.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Flight\Flight.xaml.cs">
-      <DependentUpon>Flight.xaml</DependentUpon>
+    <Compile Include="Flight\FlightForm.xaml.cs">
+      <DependentUpon>FlightForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Flight\ViewForm5.xaml.cs">
+      <DependentUpon>ViewForm5.xaml</DependentUpon>
     </Compile>
     <Compile Include="Passenger\ViewForm.xaml.cs">
       <DependentUpon>ViewForm.xaml</DependentUpon>
@@ -85,8 +97,8 @@
     <Compile Include="Ticket\AddForm4.xaml.cs">
       <DependentUpon>AddForm4.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ticket\Ticket.xaml.cs">
-      <DependentUpon>Ticket.xaml</DependentUpon>
+    <Compile Include="Ticket\TicketForm.xaml.cs">
+      <DependentUpon>TicketForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ticket\FindWin4.xaml.cs">
       <DependentUpon>FindWin4.xaml</DependentUpon>
@@ -97,8 +109,8 @@
     <Compile Include="Airplane\AddForm3.xaml.cs">
       <DependentUpon>AddForm3.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Airplane\Airplane.xaml.cs">
-      <DependentUpon>Airplane.xaml</DependentUpon>
+    <Compile Include="Airplane\AirplaneForm.xaml.cs">
+      <DependentUpon>AirplaneForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Airplane\FindWin3.xaml.cs">
       <DependentUpon>FindWin3.xaml</DependentUpon>
@@ -109,8 +121,8 @@
     <Compile Include="Airport\AddForm2.xaml.cs">
       <DependentUpon>AddForm2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Airport\Airport.xaml.cs">
-      <DependentUpon>Airport.xaml</DependentUpon>
+    <Compile Include="Airport\AirportForm.xaml.cs">
+      <DependentUpon>AirportForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Airport\FindWin2.xaml.cs">
       <DependentUpon>FindWin2.xaml</DependentUpon>
@@ -121,8 +133,8 @@
     <Compile Include="Airline\AddForm1.xaml.cs">
       <DependentUpon>AddForm1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Airline\Airline.xaml.cs">
-      <DependentUpon>Airline.xaml</DependentUpon>
+    <Compile Include="Airline\AirlineForm.xaml.cs">
+      <DependentUpon>AirlineForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Airline\FindWin1.xaml.cs">
       <DependentUpon>FindWin1.xaml</DependentUpon>
@@ -142,8 +154,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Passenger\Passenger.xaml.cs">
-      <DependentUpon>Passenger.xaml</DependentUpon>
+    <Compile Include="Passenger\PassengerForm.xaml.cs">
+      <DependentUpon>PassengerForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
@@ -153,6 +165,9 @@
     </Compile>
     <Compile Include="sysdiagram.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ticket\ViewForm4.xaml.cs">
+      <DependentUpon>ViewForm4.xaml</DependentUpon>
     </Compile>
     <Compile Include="Авиакомпании.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
@@ -214,6 +229,18 @@
     <Compile Include="СтоимостьОпределенногоРейса_Result.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>
+    <Page Include="Airline\ViewForm1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Airplane\ViewForm3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Airport\ViewForm2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Flight\EditForm5.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -226,7 +253,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Flight\Flight.xaml">
+    <Page Include="Flight\FlightForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Flight\ViewForm5.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -242,7 +273,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Ticket\Ticket.xaml">
+    <Page Include="Ticket\TicketForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -258,7 +289,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Airplane\Airplane.xaml">
+    <Page Include="Airplane\AirplaneForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -274,7 +305,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Airport\Airport.xaml">
+    <Page Include="Airport\AirportForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -290,7 +321,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Airline\Airline.xaml">
+    <Page Include="Airline\AirlineForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -322,9 +353,13 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Passenger\Passenger.xaml">
+    <Page Include="Passenger\PassengerForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ticket\ViewForm4.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

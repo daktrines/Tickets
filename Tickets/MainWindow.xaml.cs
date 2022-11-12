@@ -30,31 +30,31 @@ namespace Tickets
 
         private void Самолеты_Click(object sender, RoutedEventArgs e)
         {
-            Airplane add = new Airplane();
+            AirplaneForm add = new AirplaneForm();
             add.ShowDialog();
         }
 
         private void Авиакомпании_Click(object sender, RoutedEventArgs e)
         {
-            Airline add = new Airline();
+            AirlineForm add = new AirlineForm();
             add.ShowDialog();
         }
 
         private void Рейсы_Click(object sender, RoutedEventArgs e)
         {
-            Flight add = new Flight();
+            FlightForm add = new FlightForm();
             add.ShowDialog();
         }
 
         private void Билеты_Click(object sender, RoutedEventArgs e)
         {
-            Ticket add = new Ticket();
+            TicketForm add = new TicketForm();
             add.ShowDialog();
         }
 
         private void Аэропорты_Click(object sender, RoutedEventArgs e)
         {
-            Airport add = new Airport();
+            AirportForm add = new AirportForm();
             add.ShowDialog();
         }
 
@@ -72,7 +72,7 @@ namespace Tickets
 
         private void Pessenger_Click(object sender, RoutedEventArgs e)
         {
-            Passenger add = new Passenger();
+            PassengerForm add = new PassengerForm();
             add.ShowDialog();
         }
 
