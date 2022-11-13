@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tickets"
         mc:Ignorable="d"
-        Title="Airline" MinHeight="560" Loaded="Window_Loaded" MinWidth="593" SizeToContent="WidthAndHeight"  WindowStartupLocation="CenterScreen"  >
+        Title="Airline" MinHeight="260" Loaded="Window_Loaded" MinWidth="593" SizeToContent="WidthAndHeight"  WindowStartupLocation="CenterScreen"  >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="155*"/>
+            <RowDefinition Height="150"/>
             <RowDefinition Height="389*"/>
         </Grid.RowDefinitions>
         <Menu Grid.RowSpan="2">
