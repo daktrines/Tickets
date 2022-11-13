@@ -30,7 +30,12 @@ namespace Tickets.Flight
             {
                 if (sql1.IsChecked == true)
                 {
-                    Viewtable.ItemsSource = db.МодельСамолета();
+                    if (FindParam.SelectedIndex == 0)
+                        Viewtable.ItemsSource = db.МодельСамолета();
+                    if (FindParam.SelectedIndex == 1)
+                        Viewtable.ItemsSource = db.МодельСамолета().ToList().Where(p => p.Наименование.Contains(ID.Text));
+                    if (FindParam.SelectedIndex == 2)
+                        Viewtable.ItemsSource = db.МодельСамолета().ToList().Where(p => p.МодельСамолета.Contains(ID.Text));
                 }
                 if (sql2.IsChecked == true)
                 {
@@ -38,11 +43,11 @@ namespace Tickets.Flight
                 }
                 if (sql3.IsChecked == true)
                 {
-                    Viewtable.ItemsSource = db.ОпределеннаяПочтаИНомерАвиакомпании(Convert.ToInt32(ID.Text));
+                    Viewtable.ItemsSource = db.ОпределеннаяПочтаИНомерАвиакомпании(Convert.ToInt32(ID1.Text));
                 }
                 if (sql4.IsChecked == true)
                 {
-                    Viewtable.ItemsSource = db.СтоимостьОпределенногоРейса(Convert.ToInt32(ID.Text));
+                    Viewtable.ItemsSource = db.СтоимостьОпределенногоРейса(Convert.ToInt32(ID2.Text));
                 }
             }
             catch (Exception ex)
@@ -87,6 +92,14 @@ namespace Tickets.Flight
                 Viewtable.Columns[iHeader13].Header = "Номер рейса";
             }
             catch { }
+        }
+
+        private void Сброс_Click(object sender, RoutedEventArgs e)
+        {
+            ID.Clear();
+            ID1.Clear();
+            ID2.Clear();
+            Viewtable.ItemsSource = null;
         }
     }
 }

@@ -49,5 +49,11 @@ namespace Tickets.Airport
             }
             catch { }
         }
+
+        private void Сброс_Click(object sender, RoutedEventArgs e)
+        {
+            ID.Clear();
+            Viewtable.ItemsSource = null;
+        }
     }
 }

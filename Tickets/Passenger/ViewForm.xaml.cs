@@ -53,5 +53,11 @@ namespace Tickets.Passenger
             }
             catch { }
         }
+
+        private void Сброс_Click(object sender, RoutedEventArgs e)
+        {
+            TownName.Clear();
+            Viewtable.ItemsSource = null;
+        }
     }
 }

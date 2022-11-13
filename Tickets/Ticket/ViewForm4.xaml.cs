@@ -36,11 +36,11 @@ namespace Tickets.Ticket
                 }
                 if (sql2.IsChecked == true)
                 {
-                    Viewtable.ItemsSource = db.ГородОтправления(ID.Text);
+                    Viewtable.ItemsSource = db.ГородОтправления(ID1.Text);
                 }
                 if (sql3.IsChecked == true)
                 {
-                    Viewtable.ItemsSource = db.СтоимостьОпределенногоРейса(Convert.ToInt32(ID.Text));
+                    Viewtable.ItemsSource = db.СтоимостьОпределенногоРейса(Convert.ToInt32(ID2.Text));
                 }
             }
             catch (Exception ex)
@@ -63,6 +63,14 @@ namespace Tickets.Ticket
                 Viewtable.Columns[iHeader3].Header = "Стоимость билета";
             }
             catch { }
+        }
+
+        private void Сброс_Click(object sender, RoutedEventArgs e)
+        {
+            ID.Clear();
+            ID1.Clear();
+            ID2.Clear();
+            Viewtable.ItemsSource = null;
         }
     }
 }
