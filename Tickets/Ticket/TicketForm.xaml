@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tickets"
         mc:Ignorable="d"
-        Title="Ticket" Height="560" Loaded="Window_Loaded" Width="593" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" >
+        Title="Ticket" MinHeight="560" Loaded="Window_Loaded" MinWidth="593" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="81*"/>
