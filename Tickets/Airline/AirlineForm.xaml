@@ -38,7 +38,6 @@
             <MenuItem  Header="Запросы" Click="View_Click"/>
             <MenuItem Header="Поиск" Click="Find_Click"/>
             <MenuItem Header="Обновить" Click="Update_Click"/>
-            <MenuItem Header="О программе" Click="Information_Click"/>
             <MenuItem  Header="Выход" Click="Exit_Click" Height="23" />
         </Menu>
         <DataGrid x:Name="DataGrid1" IsReadOnly="True" AutoGenerateColumns="False" Margin="10,14,10,10" Grid.Row="1" >

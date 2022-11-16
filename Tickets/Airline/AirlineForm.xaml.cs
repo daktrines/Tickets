@@ -32,12 +32,10 @@ namespace Tickets
             db.Авиакомпании.Load();
             //Загружаем таблицу в DataGrid с отслеживанием изменения контекста 
             DataGrid1.ItemsSource = db.Авиакомпании.Local.ToBindingList();
-            //DataGrid1.ItemsSource = db.ГлавноеОкно();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            ////DataGrid1.ItemsSource = новыйПассажир 
             AddForm1 add = new AddForm1();
             add.ShowDialog();
             DataGrid1.Focus();
@@ -53,8 +51,6 @@ namespace Tickets
                 //Получаем ключ текущей записи
                 Авиакомпании row = (Авиакомпании)DataGrid1.Items[indexRow];
                 ContextDB.ID = row.КодАвиакомпании;
-                ////Получаем ключ текущей записи
-                //Пассажиры d = db.Пассажиры.Local.ElementAt(indexRow);
                 //Открываем форму Редактировать
                 EditForm1 edit = new EditForm1();
                 edit.ShowDialog();
@@ -75,18 +71,13 @@ namespace Tickets
             {
                 try
                 {
-                    #region Новое
                     if (DataGrid1.SelectedValue == null) throw new Exception();
                     //Получаем текущую запись
                     Авиакомпании d = (Авиакомпании)DataGrid1.SelectedValue;
-                    #endregion
-                    ////Получаем текущую запись
-                    //Авиакомпании d = db.Авиакомпании.Local.ElementAt(indexRow);
                     //Удаляем запись
                     db.Авиакомпании.Remove(d);
                     db.SaveChanges();
                     //Обновляем таблицу
-                    //DataGrid1.ItemsSource = db.ГлавноеОкно();
                     DataGrid1.ItemsSource = db.Авиакомпании.Local.ToBindingList();
                 }
                 catch (ArgumentOutOfRangeException)
@@ -117,7 +108,6 @@ namespace Tickets
             db.Авиакомпании.Load();
             //Загружаем таблицу в DataGrid с отслеживанием изменения контекста 
             DataGrid1.ItemsSource = db.Авиакомпании.Local.ToBindingList();
-            //DataGrid1.ItemsSource = db.ГлавноеОкно();
         }
 
 
@@ -134,19 +124,10 @@ namespace Tickets
             add.ShowDialog();
         }
 
-      
-
         private void View_Click(object sender, RoutedEventArgs e)
         {
             ViewForm1 view = new ViewForm1();
             view.ShowDialog();
-        }
-
-
-
-        private void Information_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

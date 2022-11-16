@@ -353,5 +353,26 @@ namespace Tickets
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<АэропортПрибытиеРейса_Result>("АэропортПрибытиеРейса", raceIdParameter);
         }
+    
+        public virtual int НовыйСамолет2(Nullable<int> кодСамолета, Nullable<int> кодАвиакомпании, string модельСамолета, Nullable<int> количествоМест)
+        {
+            var кодСамолетаParameter = кодСамолета.HasValue ?
+                new ObjectParameter("КодСамолета", кодСамолета) :
+                new ObjectParameter("КодСамолета", typeof(int));
+    
+            var кодАвиакомпанииParameter = кодАвиакомпании.HasValue ?
+                new ObjectParameter("КодАвиакомпании", кодАвиакомпании) :
+                new ObjectParameter("КодАвиакомпании", typeof(int));
+    
+            var модельСамолетаParameter = модельСамолета != null ?
+                new ObjectParameter("МодельСамолета", модельСамолета) :
+                new ObjectParameter("МодельСамолета", typeof(string));
+    
+            var количествоМестParameter = количествоМест.HasValue ?
+                new ObjectParameter("КоличествоМест", количествоМест) :
+                new ObjectParameter("КоличествоМест", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("НовыйСамолет2", кодСамолетаParameter, кодАвиакомпанииParameter, модельСамолетаParameter, количествоМестParameter);
+        }
     }
 }

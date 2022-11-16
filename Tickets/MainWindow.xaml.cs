@@ -27,7 +27,6 @@ namespace Tickets
             InitializeComponent();
         }
 
-
         private void Самолеты_Click(object sender, RoutedEventArgs e)
         {
             AirplaneForm add = new AirplaneForm();
@@ -58,24 +57,10 @@ namespace Tickets
             add.ShowDialog();
         }
 
-        private void Information_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-     
-
         private void Pessenger_Click(object sender, RoutedEventArgs e)
         {
             PassengerForm add = new PassengerForm();
             add.ShowDialog();
         }
-
-       
     }
 }

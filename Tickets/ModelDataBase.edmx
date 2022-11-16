@@ -635,7 +635,13 @@
           </FunctionImport>
           <FunctionImport Name="РейсыПроцедура" ReturnType="Collection(Model.РейсыПроцедура_Result)" />
           <FunctionImport Name="АэропортПрибытиеРейса" ReturnType="Collection(Model.АэропортПрибытиеРейса_Result)">
-            <Parameter Name="RaceId" Mode="In" Type="Int32" />
+          <Parameter Name="RaceId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="НовыйСамолет2">
+            <Parameter Name="КодСамолета" Mode="In" Type="Int32" />
+            <Parameter Name="КодАвиакомпании" Mode="In" Type="Int32" />
+            <Parameter Name="МодельСамолета" Mode="In" Type="String" />
+            <Parameter Name="КоличествоМест" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -981,7 +987,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="НовыйСамолет1" FunctionName="Хранилище Model.НовыйСамолет" />
           <FunctionImportMapping FunctionImportName="СамолетыПроцедура" FunctionName="Хранилище Model.СамолетыПроцедура" />
           <FunctionImportMapping FunctionImportName="РейсыПроцедура" FunctionName="Хранилище Model.РейсыПроцедура">
             <ResultMapping>
@@ -1008,6 +1013,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="НовыйСамолет2" FunctionName="Хранилище Model.НовыйСамолет" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
