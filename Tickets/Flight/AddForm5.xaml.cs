@@ -109,9 +109,8 @@ namespace Tickets
         {
             try
             {
-                var airplanes = db.СамолетыПроцедура().Where(p => p.КодСамолета == ((Самолеты)МодельСамолета.SelectedValue).КодСамолета);
-                AddTable.ItemsSource = airplanes;
-                Наименование.Text = airplanes.First().Наименование;
+                AddTable.ItemsSource = db.СамолетыПроцедура().Where(p => p.КодСамолета == ((Самолеты)МодельСамолета.SelectedValue).КодСамолета);
+                Наименование.Text = db.Авиакомпании.Where(p => p.КодАвиакомпании == ((Самолеты)МодельСамолета.SelectedValue).КодАвиакомпании).First().Наименование;
             }
             catch (Exception ex)//Если что пойдет не так - при точке останова глянуть значение ex
             {

@@ -628,20 +628,20 @@
           <FunctionImport Name="БилетыПроцедура" ReturnType="Collection(Model.БилетыПроцедура_Result)" />
           <FunctionImport Name="ГлавнаяФорма" ReturnType="Collection(Model.ГлавнаяФорма_Result)" />
           <FunctionImport Name="НовыйСамолет1">
-            <Parameter Name="КодСамолета" Mode="In" Type="Int32" />
-            <Parameter Name="КодАвиакомпании" Mode="In" Type="Int32" />
-            <Parameter Name="МодельСамолета" Mode="In" Type="String" />
-            <Parameter Name="КоличествоМест" Mode="In" Type="Int32" />
+            <Parameter Name="КодСамолета" Type="Int32" Mode="In" />
+            <Parameter Name="КодАвиакомпании" Type="Int32" Mode="In" />
+            <Parameter Name="МодельСамолета" Type="String" Mode="In" />
+            <Parameter Name="КоличествоМест" Type="Int32" Mode="In" />
           </FunctionImport>
           <FunctionImport Name="РейсыПроцедура" ReturnType="Collection(Model.РейсыПроцедура_Result)" />
           <FunctionImport Name="АэропортПрибытиеРейса" ReturnType="Collection(Model.АэропортПрибытиеРейса_Result)">
           <Parameter Name="RaceId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="НовыйСамолет2">
-            <Parameter Name="КодСамолета" Mode="In" Type="Int32" />
-            <Parameter Name="КодАвиакомпании" Mode="In" Type="Int32" />
-            <Parameter Name="МодельСамолета" Mode="In" Type="String" />
-            <Parameter Name="КоличествоМест" Mode="In" Type="Int32" />
+            <Parameter Name="КодСамолета" Type="Int32" Mode="In" />
+            <Parameter Name="КодАвиакомпании" Type="Int32" Mode="In" />
+            <Parameter Name="МодельСамолета" Type="String" Mode="In" />
+            <Parameter Name="КоличествоМест" Type="Int32" Mode="In" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -1014,6 +1014,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="НовыйСамолет2" FunctionName="Хранилище Model.НовыйСамолет" />
+          <FunctionImportMapping FunctionImportName="НовыйСамолет" FunctionName="Хранилище Model.НовыйСамолет" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
