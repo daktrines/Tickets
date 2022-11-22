@@ -11,8 +11,6 @@ namespace Tickets
     {
         public static long ID;//Код записи
 
-        //признак авторизации
-        public static bool Login = false;
         public static string Fio;
         public static string Name;
 
