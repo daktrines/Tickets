@@ -52,18 +52,17 @@ namespace Tickets
             }
 
             try
-            {//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Изменение
-             //db.НовыйСамолет(Convert.ToInt32(КодСамолета.Text), ((Авиакомпании)Наименование.SelectedValue).КодАвиакомпании, МодельСамолета.Text, Convert.ToInt32(КоличествоМест.Text));
-                #region СозданиеНовогоРейса
+            {
+                //СозданиеНовогоРейса
                 p1 = new Рейсы();
-                #region Проверка наличия такого рейса и его присваивание
+                //Проверка наличия такого рейса и его присваивание
                 int RaceId = Convert.ToInt32(КодРейса.Text);
                 var codes = from table in db.Рейсы
                             where table.КодРейса == RaceId
                             select table;
                 if (codes.Count() != 0) throw new Exception("Существует указанный рейс");
                 else p1.КодРейса = RaceId;
-                #endregion
+
                 p1.КодАвиакомпании = db.Авиакомпании.Local.ToBindingList().Where(p => p.Наименование == Наименование.Text).First().КодАвиакомпании;
                 p1.КодСамолёта = db.Самолеты.Local.ToBindingList().Where(p => p.МодельСамолета == ((Самолеты)МодельСамолета.SelectedValue).МодельСамолета).First().КодСамолета;
                 p1.ДатаОтправления = (DateTime)ДатаОтправления.SelectedDate;
@@ -74,7 +73,7 @@ namespace Tickets
                 p1.СтоимостьБилета = Convert.ToDecimal(СтоимостьБилета.Text);
                 p1.Отправление = db.Аэропорты.Local.ToBindingList().Where(p => p.Город == ((Аэропорты)Город_отправление.SelectedValue).Город).First().КодАэропорта;
                 p1.Прибытие = db.Аэропорты.Local.ToBindingList().Where(p => p.Город == ((Аэропорты)Город_назначение.SelectedValue).Город).First().КодАэропорта;
-                #endregion
+
                 db.Рейсы.Add(p1);
                 //Сохраняем изменения
                 db.SaveChanges();

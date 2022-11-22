@@ -39,7 +39,6 @@ namespace Tickets
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            ////DataGrid1.ItemsSource = новыйПассажир 
             AddForm5 add = new AddForm5();
             add.ShowDialog();
             DataGrid1.Focus();
@@ -77,11 +76,9 @@ namespace Tickets
             {
                 try
                 {
-                    #region Новое
                     if (DataGrid1.SelectedValue == null) throw new Exception();
                     //Получаем текущую запись
                     Рейсы d = db.Рейсы.Find(((РейсыПроцедура_Result)DataGrid1.SelectedValue).КодРейса);
-                    #endregion
                     //Удаляем запись
                     db.Рейсы.Remove(d);
                     db.SaveChanges();
@@ -117,7 +114,6 @@ namespace Tickets
             add.ShowDialog();
         }
 
-
         private void Билеты_Click(object sender, RoutedEventArgs e)
         {
             TicketForm add = new TicketForm();
@@ -134,13 +130,6 @@ namespace Tickets
         {
             ViewForm5 view = new ViewForm5();
             view.ShowDialog();
-        }
-
-
-
-        private void Information_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

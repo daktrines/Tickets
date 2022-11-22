@@ -40,17 +40,14 @@ namespace Tickets
             if (НомерПаспорта.Text.Length == 0 || double.TryParse(НомерПаспорта.Text, out double x3) == false) errors.AppendLine("Введите номер паспорта");
             if (МобильныйТелефон.Text.Length == 0) errors.AppendLine("Введите мобильный телефон");
             if (ДатаРождения.Text.Length == 0) errors.AppendLine("Введите дату");
-            //if (НазваниеКласса.Text != "Бизнес-класс" && НазваниеКласса.Text != "Эконом-класс")
-            //    errors.AppendLine("Введите пол Бизнес-класс/Эконом-класс");
-            //if (Багаж.Text != "False" && Багаж.Text != "True")
-            //    errors.AppendLine("Введите пол False/True");
+
 
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
                 return;
             }
-            // ((Билеты)НазваниеКласса.SelectedValue).НазваниеКласса, ((Билеты)Багаж.SelectedValue).Багаж
+
             //Создаем элемент таблицы
             Пассажиры p1 = new Пассажиры();
             //Заполняем этот элемент
@@ -69,7 +66,6 @@ namespace Tickets
                 db.Пассажиры.Add(p1);
                 //Сохраняем изменения
                 db.SaveChanges();
-                MessageBox.Show("Информация сохранена!");
                 Close();
             }
             catch (Exception ex)
@@ -88,9 +84,6 @@ namespace Tickets
         {
             db.Пассажиры.Load();
             db.Билеты.Load();
-
         }
-
-
     }
 }

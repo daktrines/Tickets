@@ -12,16 +12,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Tickets.Ticket;
 
 namespace Tickets
 {
     /// <summary>
     /// Логика взаимодействия для Passenger.xaml
     /// </summary>
-    public partial class TicketForm : Window
+    public partial class Airline : Window
     {
-        public TicketForm()
+        public Airline()
         {
             InitializeComponent();
         }
@@ -29,40 +28,37 @@ namespace Tickets
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //Загружаем таблицу из БД
-            db.Рейсы.Load();
             db.Авиакомпании.Load();
-            db.Билеты.Load();
-            db.Аэропорты.Load();
-            db.Пассажиры.Load();
             //Загружаем таблицу в DataGrid с отслеживанием изменения контекста 
-            DataGrid1.ItemsSource = db.БилетыПроцедура();
+            DataGrid1.ItemsSource = db.Авиакомпании.Local.ToBindingList();
+            //DataGrid1.ItemsSource = db.ГлавноеОкно();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            AddForm4 add = new AddForm4();
+            ////DataGrid1.ItemsSource = новыйПассажир 
+            AddForm1 add = new AddForm1();
             add.ShowDialog();
             DataGrid1.Focus();
-            DataGrid1.ItemsSource = db.БилетыПроцедура();
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            if (DataGrid1.SelectedValue != null)
+            int indexRow = DataGrid1.SelectedIndex;
+            if (indexRow != -1)
             {
                 //Загружаем таблицу из БД
-                db.Рейсы.Load();
                 db.Авиакомпании.Load();
-                db.Билеты.Load();
-                db.Аэропорты.Load();
-                db.Пассажиры.Load();
                 //Получаем ключ текущей записи
-                ContextDB.ID = ((БилетыПроцедура_Result)DataGrid1.SelectedValue).КодБилета;
+                Авиакомпании row = (Авиакомпании)DataGrid1.Items[indexRow];
+                ContextDB.ID = row.КодАвиакомпании;
+                ////Получаем ключ текущей записи
+                //Пассажиры d = db.Пассажиры.Local.ElementAt(indexRow);
                 //Открываем форму Редактировать
-                EditForm4 edit = new EditForm4();
+                EditForm1 edit = new EditForm1();
                 edit.ShowDialog();
                 //Обновляем таблицу
-                DataGrid1.ItemsSource = db.БилетыПроцедура();
+                DataGrid1.Items.Refresh();
                 DataGrid1.Focus();
             }
             
@@ -78,14 +74,19 @@ namespace Tickets
             {
                 try
                 {
+                    #region Новое
                     if (DataGrid1.SelectedValue == null) throw new Exception();
                     //Получаем текущую запись
-                    Билеты d = db.Билеты.Find(((БилетыПроцедура_Result)DataGrid1.SelectedValue).КодБилета);
+                    Авиакомпании d = (Авиакомпании)DataGrid1.SelectedValue;
+                    #endregion
+                    ////Получаем текущую запись
+                    //Авиакомпании d = db.Авиакомпании.Local.ElementAt(indexRow);
                     //Удаляем запись
-                    db.Билеты.Remove(d);
+                    db.Авиакомпании.Remove(d);
                     db.SaveChanges();
                     //Обновляем таблицу
-                    DataGrid1.ItemsSource = db.БилетыПроцедура();
+                    //DataGrid1.ItemsSource = db.ГлавноеОкно();
+                    DataGrid1.ItemsSource = db.Авиакомпании.Local.ToBindingList();
                 }
                 catch (ArgumentOutOfRangeException)
                 {
@@ -95,38 +96,55 @@ namespace Tickets
         }
         private void Find_Click(object sender, RoutedEventArgs e)
         {
-            FindWin4 find = new FindWin4();
-            if (find.ShowDialog() == true) DataGrid1.ItemsSource = find.q;
+            FindWin1 find = new FindWin1();
+            if (find.ShowDialog() == true)
+            {
+                foreach (var item in DataGrid1.Items)
+                {
+                    if (((Авиакомпании)item).КодАвиакомпании == find.q)
+                    {
+                        DataGrid1.SelectedItem = item;
+                        break;
+                    }
+                }
+            }
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
             //Загружаем таблицу из БД
-            db.Рейсы.Load();
             db.Авиакомпании.Load();
-            db.Билеты.Load();
-            db.Аэропорты.Load();
-            db.Пассажиры.Load();
             //Загружаем таблицу в DataGrid с отслеживанием изменения контекста 
-            DataGrid1.ItemsSource = db.БилетыПроцедура();
+            DataGrid1.ItemsSource = db.Авиакомпании.Local.ToBindingList();
+            //DataGrid1.ItemsSource = db.ГлавноеОкно();
         }
+
 
         private void Самолеты_Click(object sender, RoutedEventArgs e)
         {
-            AirplaneForm add = new AirplaneForm();
+            Airplane add = new Airplane();
             add.ShowDialog();
         }
 
-        private void Авиакомпании_Click(object sender, RoutedEventArgs e)
+
+        private void Билеты_Click(object sender, RoutedEventArgs e)
         {
-            AirlineForm add = new AirlineForm();
+            Ticket add = new Ticket();
             add.ShowDialog();
         }
+
+      
 
         private void View_Click(object sender, RoutedEventArgs e)
         {
-            ViewForm4 view = new ViewForm4();
-            view.ShowDialog();
+
+        }
+
+
+
+        private void Information_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -136,19 +154,18 @@ namespace Tickets
 
         private void Пассажиры_Click(object sender, RoutedEventArgs e)
         {
-            PassengerForm add = new PassengerForm();
+            Passenger add = new Passenger();
             add.ShowDialog();
         }
 
         private void Аэропорты_Click(object sender, RoutedEventArgs e)
         {
-            AirportForm add = new AirportForm();
+            Airport add = new Airport();
             add.ShowDialog();
         }
-
         private void Рейсы_Click(object sender, RoutedEventArgs e)
         {
-            FlightForm add = new FlightForm();
+            Flight add = new Flight();
             add.ShowDialog();
         }
     }

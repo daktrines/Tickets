@@ -56,7 +56,6 @@ namespace Tickets
                 db.Авиакомпании.Add(p1);
                 //Сохраняем изменения
                 db.SaveChanges();
-                MessageBox.Show("Информация сохранена!");
                 Close();
             }
             catch (Exception ex)
@@ -74,9 +73,6 @@ namespace Tickets
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             db.Авиакомпании.Load();
-
         }
-
-
     }
 }

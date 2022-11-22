@@ -52,16 +52,15 @@ namespace Tickets
             }
 
             try
-            {//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Изменение
-             //db.НовыйСамолет(Convert.ToInt32(КодСамолета.Text), ((Авиакомпании)Наименование.SelectedValue).КодАвиакомпании, МодельСамолета.Text, Convert.ToInt32(КоличествоМест.Text));
-                #region Проверка наличия такого рейса и его присваивание
+            {
+                //Проверка наличия такого рейса и его присваивание
                 int RaceId = Convert.ToInt32(КодРейса.Text);
                 var codes = from table in db.Рейсы
                             where table.КодРейса == RaceId
                             select table;
                 if (codes.Count() == 0) throw new Exception("Не существует указанный рейс");
                 else p1.КодРейса = RaceId;
-                #endregion
+
                 p1.КодАвиакомпании = db.Авиакомпании.Local.ToBindingList().Where(p => p.Наименование == Наименование.Text).First().КодАвиакомпании;
                 p1.КодСамолёта = db.Самолеты.Local.ToBindingList().Where(p => p.МодельСамолета == ((Самолеты)МодельСамолета.SelectedValue).МодельСамолета).First().КодСамолета;
                 p1.ДатаОтправления = (DateTime)ДатаОтправления.SelectedDate;

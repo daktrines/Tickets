@@ -12,16 +12,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Tickets.Ticket;
 
 namespace Tickets
 {
     /// <summary>
     /// Логика взаимодействия для Passenger.xaml
     /// </summary>
-    public partial class TicketForm : Window
+    public partial class Ticket : Window
     {
-        public TicketForm()
+        public Ticket()
         {
             InitializeComponent();
         }
@@ -40,6 +39,7 @@ namespace Tickets
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
+            ////DataGrid1.ItemsSource = новыйПассажир 
             AddForm4 add = new AddForm4();
             add.ShowDialog();
             DataGrid1.Focus();
@@ -78,9 +78,11 @@ namespace Tickets
             {
                 try
                 {
+                    #region Новое
                     if (DataGrid1.SelectedValue == null) throw new Exception();
                     //Получаем текущую запись
                     Билеты d = db.Билеты.Find(((БилетыПроцедура_Result)DataGrid1.SelectedValue).КодБилета);
+                    #endregion
                     //Удаляем запись
                     db.Билеты.Remove(d);
                     db.SaveChanges();
@@ -113,20 +115,26 @@ namespace Tickets
 
         private void Самолеты_Click(object sender, RoutedEventArgs e)
         {
-            AirplaneForm add = new AirplaneForm();
+            Airplane add = new Airplane();
             add.ShowDialog();
         }
 
         private void Авиакомпании_Click(object sender, RoutedEventArgs e)
         {
-            AirlineForm add = new AirlineForm();
+            Airline add = new Airline();
             add.ShowDialog();
         }
 
         private void View_Click(object sender, RoutedEventArgs e)
         {
-            ViewForm4 view = new ViewForm4();
-            view.ShowDialog();
+
+        }
+
+
+
+        private void Information_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -136,19 +144,19 @@ namespace Tickets
 
         private void Пассажиры_Click(object sender, RoutedEventArgs e)
         {
-            PassengerForm add = new PassengerForm();
+            Passenger add = new Passenger();
             add.ShowDialog();
         }
 
         private void Аэропорты_Click(object sender, RoutedEventArgs e)
         {
-            AirportForm add = new AirportForm();
+            Airport add = new Airport();
             add.ShowDialog();
         }
 
         private void Рейсы_Click(object sender, RoutedEventArgs e)
         {
-            FlightForm add = new FlightForm();
+            Flight add = new Flight();
             add.ShowDialog();
         }
     }

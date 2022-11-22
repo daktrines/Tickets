@@ -33,12 +33,10 @@ namespace Tickets
             db.Билеты.Load();
             //Загружаем таблицу в DataGrid с отслеживанием изменения контекста 
             DataGrid1.ItemsSource = db.Пассажиры.Local.ToBindingList();
-            //DataGrid1.ItemsSource = db.ГлавноеОкно();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            ////DataGrid1.ItemsSource = новыйПассажир 
             AddForm add = new AddForm();
             add.ShowDialog();
             DataGrid1.Focus();
@@ -55,8 +53,6 @@ namespace Tickets
                 //Получаем ключ текущей записи
                 Пассажиры row = (Пассажиры)DataGrid1.Items[indexRow];
                 ContextDB.ID = row.КодПассажира;
-                ////Получаем ключ текущей записи
-                //Пассажиры d = db.Пассажиры.Local.ElementAt(indexRow);
                 //Открываем форму Редактировать
                 EditForm edit = new EditForm();
                 edit.ShowDialog();
@@ -77,18 +73,13 @@ namespace Tickets
             {
                 try
                 {
-                    #region Новое
                     if (DataGrid1.SelectedValue == null) throw new Exception();
                     //Получаем текущую запись
                     Пассажиры d = (Пассажиры)DataGrid1.SelectedValue;
-                    #endregion
-                    ////Получаем текущую запись
-                    //Пассажиры d = db.Пассажиры.Local.ElementAt(indexRow);
                     //Удаляем запись
                     db.Пассажиры.Remove(d);
                     db.SaveChanges();
                     //Обновляем таблицу
-                    //DataGrid1.ItemsSource = db.ГлавноеОкно();
                     DataGrid1.ItemsSource = db.Пассажиры.Local.ToBindingList();
                 }
                 catch (ArgumentOutOfRangeException)
@@ -117,10 +108,8 @@ namespace Tickets
         {
             //Загружаем таблицу из БД
             db.Пассажиры.Load();
-            //db.Билеты.Load();
             //Загружаем таблицу в DataGrid с отслеживанием изменения контекста 
             DataGrid1.ItemsSource = db.Пассажиры.Local.ToBindingList();
-            //DataGrid1.ItemsSource = db.ГлавноеОкно();
         }
 
         private void Самолеты_Click(object sender, RoutedEventArgs e)
@@ -146,13 +135,6 @@ namespace Tickets
         {
             ViewForm view = new ViewForm();
             view.ShowDialog();
-        }
-
-
-
-        private void Information_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

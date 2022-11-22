@@ -17,7 +17,7 @@ using Tickets.Airport;
 namespace Tickets
 {
     /// <summary>
-    /// Логика взаимодействия для Passenger.xaml
+    /// 
     /// </summary>
     public partial class AirportForm : Window
     {
@@ -32,12 +32,10 @@ namespace Tickets
             db.Аэропорты.Load();
             //Загружаем таблицу в DataGrid с отслеживанием изменения контекста 
             DataGrid1.ItemsSource = db.Аэропорты.Local.ToBindingList();
-            //DataGrid1.ItemsSource = db.ГлавноеОкно();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            ////DataGrid1.ItemsSource = новыйПассажир 
             AddForm2 add = new AddForm2();
             add.ShowDialog();
             DataGrid1.Focus();
@@ -53,8 +51,6 @@ namespace Tickets
                 //Получаем ключ текущей записи
                 Аэропорты row = (Аэропорты)DataGrid1.Items[indexRow];
                 ContextDB.ID = row.КодАэропорта;
-                ////Получаем ключ текущей записи
-                //Пассажиры d = db.Пассажиры.Local.ElementAt(indexRow);
                 //Открываем форму Редактировать
                 EditForm2 edit = new EditForm2();
                 edit.ShowDialog();
@@ -75,18 +71,13 @@ namespace Tickets
             {
                 try
                 {
-                    #region Новое
                     if (DataGrid1.SelectedValue == null) throw new Exception();
                     //Получаем текущую запись
                     Аэропорты d = (Аэропорты)DataGrid1.SelectedValue;
-                    #endregion
-                    ////Получаем текущую запись
-                    //Аэропорты d = db.Аэропорты.Local.ElementAt(indexRow);
                     //Удаляем запись
                     db.Аэропорты.Remove(d);
                     db.SaveChanges();
                     //Обновляем таблицу
-                    //DataGrid1.ItemsSource = db.ГлавноеОкно();
                     DataGrid1.ItemsSource = db.Аэропорты.Local.ToBindingList();
                 }
                 catch (ArgumentOutOfRangeException)
@@ -117,7 +108,6 @@ namespace Tickets
             db.Аэропорты.Load();
             //Загружаем таблицу в DataGrid с отслеживанием изменения контекста 
             DataGrid1.ItemsSource = db.Аэропорты.Local.ToBindingList();
-            //DataGrid1.ItemsSource = db.ГлавноеОкно();
         }
 
         private void Самолеты_Click(object sender, RoutedEventArgs e)
@@ -145,13 +135,6 @@ namespace Tickets
             view.ShowDialog();
         }
 
-
-
-        private void Information_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -162,7 +145,6 @@ namespace Tickets
             PassengerForm add = new PassengerForm();
             add.ShowDialog();
         }
-
 
         private void Рейсы_Click(object sender, RoutedEventArgs e)
         {

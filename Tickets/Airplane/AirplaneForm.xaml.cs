@@ -17,7 +17,7 @@ using Tickets.Airplane;
 namespace Tickets
 {
     /// <summary>
-    /// Логика взаимодействия для Passenger.xaml
+    /// 
     /// </summary>
     public partial class AirplaneForm : Window
     {
@@ -38,7 +38,6 @@ namespace Tickets
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            ////DataGrid1.ItemsSource = новыйПассажир 
             AddForm3 add = new AddForm3();
             add.ShowDialog();
             DataGrid1.Focus();
@@ -75,13 +74,9 @@ namespace Tickets
             {
                 try
                 {
-                    #region Новое
                     if (DataGrid1.SelectedValue == null) throw new Exception();
                     //Получаем текущую запись
                     Самолеты d = db.Самолеты.Find(((СамолетыПроцедура_Result)DataGrid1.SelectedValue).КодСамолета);
-                    #endregion
-                    ////Получаем текущую запись
-                    //Самолеты d = db.Самолеты.Local.ElementAt(indexRow);
                     //Удаляем запись
                     db.Самолеты.Remove(d);
                     db.SaveChanges();
@@ -126,13 +121,6 @@ namespace Tickets
         {
             ViewForm3 view = new ViewForm3();
             view.ShowDialog();
-        }
-
-
-
-        private void Information_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

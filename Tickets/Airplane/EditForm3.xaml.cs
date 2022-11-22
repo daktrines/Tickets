@@ -29,8 +29,6 @@ namespace Tickets
         Продажа_билетов_на_самолетEntities db = ContextDB.GetContext();
         Самолеты p1;//Элемент для работы с записью
 
-
-
         private void AddMain_Click(object sender, RoutedEventArgs e)
         {
             //Проверка каждого обязательного для заполнения поля
@@ -88,13 +86,8 @@ namespace Tickets
         {
             try
             {
-                //Это горячая подгрузка связанной записи
-                //if (Наименование.SelectedValue != null )
-                //{
-                //    AddTable.ItemsSource = null;
                 //получаем список авиакомпаний из таблицы авиакомпаниии, и потом используем выборку по наименованию
                 AddTable.ItemsSource = db.Авиакомпании.Local.ToBindingList().Where(p => p.Наименование == ((Авиакомпании)Наименование.SelectedValue).Наименование);
-                //}
              }
             catch (Exception ex)
             {

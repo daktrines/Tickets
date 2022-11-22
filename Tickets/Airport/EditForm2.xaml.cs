@@ -28,7 +28,6 @@ namespace Tickets
         Продажа_билетов_на_самолетEntities db = ContextDB.GetContext();
         Аэропорты p1;//Элемент для работы с записью
 
-
         private void AddMain_Click(object sender, RoutedEventArgs e)
         {
             //Проверка каждого обязательного для заполнения поля
@@ -56,7 +55,6 @@ namespace Tickets
             {
                 //Сохраняем изменения
                 db.SaveChanges();
-                MessageBox.Show("Информация сохранена!");
                 Close();
             }
             catch (Exception ex)
@@ -81,7 +79,5 @@ namespace Tickets
             Город.Text = p1.Город;
             Телефон.Text = p1.Телефон;
         }
-
-
     }
 }

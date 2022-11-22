@@ -45,24 +45,22 @@ namespace Tickets
             }
 
             try
-            {//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Изменение
-             //db.НовыйСамолет(Convert.ToInt32(КодСамолета.Text), ((Авиакомпании)Наименование.SelectedValue).КодАвиакомпании, МодельСамолета.Text, Convert.ToInt32(КоличествоМест.Text));
-
-                #region Проверка наличия такого рейса и его присваивание
+            {
+                //Проверка наличия такого рейса и его присваивание
                 int RaceId = Convert.ToInt32(КодРейса.Text);
                 var codes = from table in db.Рейсы
                             where table.КодРейса == RaceId
                             select table;
                 if (codes.Count() == 0) throw new Exception("Не существует указанного рейса");
                 else p1.КодРейса = RaceId;
-                #endregion
+
                 p1.КодАвиакомпании = db.Авиакомпании.Local.ToBindingList().Where(p => p.Наименование == Наименование.Text).First().КодАвиакомпании;
                 p1.НазваниеКласса = НазваниеКласса.Text;
-                #region Багаж
+                //Багаж
                 if (Багаж.Text == "Есть") p1.Багаж = true;
                 else p1.Багаж = false;
-                #endregion
-                #region Получение кода пассажира
+
+                //Получение кода пассажира
                 var passengers = db.Пассажиры.Local.ToBindingList().
                     Where(p => p.Фамилия == Фамилия.Text).
                     Where(p => p.Имя == Имя.Text).
@@ -73,10 +71,10 @@ namespace Tickets
                     int passengerId = passengers.First().КодПассажира;                   
                     p1.КодПассажира = passengerId;
                 }
-                #endregion
+
                 p1.ДатаПокупкиБилета = DateTime.Now.Date;
                 p1.ВремяПокупкиБилета = DateTime.Now.TimeOfDay;
-                //db.Билеты.Add(p1);
+
                 //Сохраняем изменения
                 db.SaveChanges();
                 Close();

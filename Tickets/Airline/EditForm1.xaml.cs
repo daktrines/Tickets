@@ -53,7 +53,6 @@ namespace Tickets
             {
                 //Сохраняем изменения
                 db.SaveChanges();
-                MessageBox.Show("Информация сохранена!");
                 Close();
             }
             catch (Exception ex)
@@ -78,7 +77,5 @@ namespace Tickets
             Телефон.Text = p1.Телефон;
             ЭлектронныйАдрес.Text = p1.ЭлектронныйАдрес;
         }
-
-
     }
 }
